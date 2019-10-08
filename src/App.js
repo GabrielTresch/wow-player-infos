@@ -1,7 +1,8 @@
 import React from 'react';
+import GetUser from './api/GetUser';
 
 const App = () => (
-  <h1>ok</h1>
+  <GetUser />
 );
 
 export default App;
