@@ -1,8 +1,8 @@
 import React from 'react';
-import GetUser from './api/GetUser';
+import Layout from './containers/LayoutContainer';
 
 const App = () => (
-  <GetUser />
+  <Layout />
 );
 
 export default App;
