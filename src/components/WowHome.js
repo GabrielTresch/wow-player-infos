@@ -21,6 +21,7 @@ const GetUser = () => {
     media: [],
     titles: [],
     mounts: [],
+    reputation: [],
   });
   useEffect(() => {
     async function fetchData() {
@@ -44,32 +45,35 @@ const GetUser = () => {
       const spec = await axios(profil.data.active_spec.key.href, header);
       // Titles
       const titles = await axios(profil.data.titles.href, header);
+      // Réputations
+      const reputation = await axios(profil.data.reputations.href, header);
       // Collection
-      const collection = await axios(profil.data.collections.href, header);
-      const getMounts = await axios(collection.data.mounts.href, header);
-      const mountArray = [];
-      getMounts.data.mounts.forEach(async (e, i) => {
-        setTimeout(async () => {
-          const mount = await axios(e.mount.key.href, header);
-          const mountImages = await axios(mount.data.creature_displays[0].key.href, header);
-          mountArray.push({
-            id: i,
-            name: mount.data.name.fr_FR,
-            description: mount.data.description.fr_FR,
-            source: mount.data.source ? mount.data.source.name.fr_FR : '',
-            img: mountImages.data.assets[2].value,
-          });
-          setWow({
-            user: profil.data,
-            race: race.data,
-            realm: realm.data,
-            spec: spec.data,
-            media: media.data,
-            mounts: [...mountArray],
-            titles: titles.data,
-          });
-        }, i * 100);
-      });
+      // const collection = await axios(profil.data.collections.href, header);
+      // const getMounts = await axios(collection.data.mounts.href, header);
+      // const mountArray = [];
+      // getMounts.data.mounts.forEach(async (e, i) => {
+      //   setTimeout(async () => {
+      //     const mount = await axios(e.mount.key.href, header);
+      //     const mountImages = await axios(mount.data.creature_displays[0].key.href, header);
+      //     mountArray.push({
+      //       id: i,
+      //       name: mount.data.name.fr_FR,
+      //       description: mount.data.description.fr_FR,
+      //       source: mount.data.source ? mount.data.source.name.fr_FR : '',
+      //       img: mountImages.data.assets[2].value,
+      //     });
+      //     setWow({
+      //       user: profil.data,
+      //       race: race.data,
+      //       realm: realm.data,
+      //       spec: spec.data,
+      //       media: media.data,
+      //       mounts: [...mountArray],
+      //       titles: titles.data,
+      //       reputation: reputation.data,
+      //     });
+      //   }, i * 100);
+      // });
       setWow({
         user: profil.data,
         race: race.data,
@@ -77,12 +81,12 @@ const GetUser = () => {
         spec: spec.data,
         media: media.data,
         titles: titles.data,
+        reputation: reputation.data,
       });
     }
     fetchData();
   }, []);
-  console.log(wow.mounts);
-  // console.log(wow.spec.pvp_talents);
+  console.log(wow);
   return (
     <>
       <h1>Wow player info</h1>
@@ -127,12 +131,14 @@ const GetUser = () => {
                 <div key={value.id}>{value.name.fr_FR}</div>
               ))}
             </div>
-            {/* <div>
-              <h2>test</h2>
-              {wow.spec.pvp_talents.map((value) => (
-                <div>{value.spell_tooltip.description.fr_FR}</div>
+            <div>
+              <h2>Réputations</h2>
+              {wow.reputation.reputations.map((value) => (
+                <div key={value.faction.id}>
+                  <p>{`${value.faction.name.fr_FR} ${value.standing.value} / ${value.standing.max} ${value.standing.name.fr_FR}`}</p>
+                </div>
               ))}
-            </div> */}
+            </div>
           </>
         )
         : <p>Loading...</p>}
