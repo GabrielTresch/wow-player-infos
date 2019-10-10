@@ -22,6 +22,7 @@ const GetUser = () => {
     titles: [],
     mounts: [],
     reputation: [],
+    pvp: [],
   });
   useEffect(() => {
     async function fetchData() {
@@ -47,6 +48,9 @@ const GetUser = () => {
       const titles = await axios(profil.data.titles.href, header);
       // Réputations
       const reputation = await axios(profil.data.reputations.href, header);
+      // PVP
+      const pvp = await axios(profil.data.pvp_summary.href, header);
+      console.log(pvp);
       // Collection
       // const collection = await axios(profil.data.collections.href, header);
       // const getMounts = await axios(collection.data.mounts.href, header);
@@ -71,6 +75,7 @@ const GetUser = () => {
       //       mounts: [...mountArray],
       //       titles: titles.data,
       //       reputation: reputation.data,
+      //       pvp: pvp.data,
       //     });
       //   }, i * 100);
       // });
@@ -82,6 +87,7 @@ const GetUser = () => {
         media: media.data,
         titles: titles.data,
         reputation: reputation.data,
+        pvp: pvp.data,
       });
     }
     fetchData();
@@ -133,11 +139,42 @@ const GetUser = () => {
             </div>
             <div>
               <h2>Réputations</h2>
-              {wow.reputation.reputations.map((value) => (
-                <div key={value.faction.id}>
-                  <p>{`${value.faction.name.fr_FR} ${value.standing.value} / ${value.standing.max} ${value.standing.name.fr_FR}`}</p>
-                </div>
-              ))}
+              <table>
+                <tbody>
+                  {wow.reputation.reputations.map((value) => (
+                    <tr key={value.faction.id}>
+                      <td>{value.faction.name.fr_FR}</td>
+                      <td>{`${value.standing.value} / ${value.standing.max}`}</td>
+                      <td>{value.standing.name.fr_FR}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h2>PVP</h2>
+              <p>{`Honor level: ${wow.pvp.honor_level}`}</p>
+              <p>{`Honorable kills: ${wow.pvp.honorable_kills}`}</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Map</th>
+                    <th>Win</th>
+                    <th>Lose</th>
+                    <th>Played</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {wow.pvp.pvp_map_statistics.map((value) => (
+                    <tr key={value.world_map.id}>
+                      <td>{`${value.world_map.name.fr_FR}`}</td>
+                      <td>{`${value.match_statistics.won}`}</td>
+                      <td>{`${value.match_statistics.lost}`}</td>
+                      <td>{`${value.match_statistics.played}`}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </>
         )
