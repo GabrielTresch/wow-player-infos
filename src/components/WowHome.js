@@ -57,13 +57,10 @@ const GetUser = () => {
       const achievement = await axios(profil.data.achievements.href, header);
       const categoryArray = [];
       const parentCategoryArray = [];
+      const filterArray = [];
       achievement.data.category_progress.forEach(async (e, i) => {
         setTimeout(async () => {
-          // console.log(e);
           const category = await axios(e.category.key.href, header);
-          // console.log(category.data);
-          // eslint-disable-next-line max-len
-          // console.log(category.data.parent_category ? category.data.parent_category.name.fr_FR : false);
           categoryArray.push({
             id: i,
             categoryParent: category.data.parent_category
@@ -73,26 +70,27 @@ const GetUser = () => {
           if (category.data.parent_category === undefined) {
             parentCategoryArray.push(category.data.name.fr_FR);
           }
-          // console.log(parentCategoryArray);
           parentCategoryArray.forEach((el) => {
-            console.log(el);
-            // eslint-disable-next-line array-callback-return
-            const test = categoryArray.filter((element) => element.categoryParent === el);
-            console.log(test);
+            const categoryFilter = categoryArray.filter((element) => element.categoryParent === el);
+            filterArray.push({
+              parentCategory: el,
+              category: categoryFilter,
+            });
+            filterArray.reverse();
+            filterArray.slice(0, parentCategoryArray.length);
+            setWow({
+              user: profil.data,
+              race: race.data,
+              realm: realm.data,
+              specActive: specActive.data,
+              spec: spec.data,
+              media: media.data,
+              titles: titles.data,
+              reputation: reputation.data,
+              pvp: pvp.data,
+              achiev: filterArray.slice(0, parentCategoryArray.length),
+            });
           });
-          // console.log(categoryArray);
-          // setWow({
-          //   user: profil.data,
-          //   race: race.data,
-          //   realm: realm.data,
-          //   specActive: specActive.data,
-          //   spec: spec.data,
-          //   media: media.data,
-          //   titles: titles.data,
-          //   reputation: reputation.data,
-          //   pvp: pvp.data,
-          //   achiev: [...categoryArray],
-          // });
         }, i * 100);
       });
       // console.log(categoryArray);
@@ -223,6 +221,25 @@ const GetUser = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div>
+              <h2>Achievement Category</h2>
+              {wow.achiev
+                ? (
+                  wow.achiev.map((achiev, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <div key={index}>
+                      <h3>{achiev.parentCategory}</h3>
+                      {achiev.category.map((value, i) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <div key={i}>
+                          <p>{value.category}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ))
+                )
+                : <p>Loading achievement category...</p>}
             </div>
           </>
         )
