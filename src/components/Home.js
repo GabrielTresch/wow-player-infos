@@ -19,10 +19,10 @@ const Home = () => {
   const [pseudo, setPseudo] = useState('yashuki');
   const [realmSlug, setRealmSlug] = useState('kaelthas');
   const [region, setRegion] = useState('eu');
-  const [profil, setProfil] = useState([]);
-  const [race, setRace] = useState([]);
-  const [realm, setRealm] = useState([]);
-  const [media, setMedia] = useState([]);
+  const [profil, setProfil] = useState({});
+  const [race, setRace] = useState({});
+  const [realm, setRealm] = useState({});
+  const [media, setMedia] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -51,16 +51,12 @@ const Home = () => {
       <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
       <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} />
       <input value={region} onChange={(e) => setRegion(e.target.value)} />
-      {media.bust_url
-        ? (
-          <HomeProfil
-            profil={profil}
-            race={race}
-            realm={realm}
-            media={media}
-          />
-        )
-        : <p>Loading...</p>}
+      <HomeProfil
+        profil={profil}
+        race={race}
+        realm={realm}
+        media={media}
+      />
     </>
   );
 };
