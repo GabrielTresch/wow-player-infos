@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
 import HomeProfil from './HomeProfil';
+import HomeTitles from './HomeTitles';
 
 const Auth = {
   auth: {
@@ -23,6 +24,7 @@ const Home = () => {
   const [race, setRace] = useState({});
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
+  const [titles, setTitles] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -33,8 +35,8 @@ const Home = () => {
       const getRace = await request(getProfil.data.race.key.href, header);
       const getRealm = await request(getProfil.data.realm.key.href, header);
       const getMedia = await request(getProfil.data.media.href, header);
-      // // Titles
-      // const titles = await request(getProfil.data.titles.href, header);
+      // Titles
+      const getTitles = await request(getProfil.data.titles.href, header);
       // // Reputations
       // const reputation = await request(getProfil.data.reputations.href, header);
       // // Pvp
@@ -43,6 +45,7 @@ const Home = () => {
       setRace(getRace.data);
       setRealm(getRealm.data);
       setMedia(getMedia.data);
+      setTitles(getTitles.data);
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
@@ -57,6 +60,7 @@ const Home = () => {
         realm={realm}
         media={media}
       />
+      <HomeTitles titles={titles} />
     </>
   );
 };
