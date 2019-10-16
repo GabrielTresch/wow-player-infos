@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
+import HomeProfil from './HomeProfil';
 
 const Auth = {
   auth: {
@@ -18,17 +19,20 @@ const Home = () => {
   const [pseudo, setPseudo] = useState('yashuki');
   const [realmSlug, setRealmSlug] = useState('kaelthas');
   const [region, setRegion] = useState('eu');
-  const [profil, setProfil] = useState();
+  const [profil, setProfil] = useState([]);
+  const [race, setRace] = useState([]);
+  const [realm, setRealm] = useState([]);
+  const [media, setMedia] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const getToken = await request('https://eu.battle.net/oauth/token', Auth);
       const header = AxiosHeader(getToken.data.access_token);
       const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
-      // // Profil
-      // const race = await request(getProfil.data.race.key.href, header);
-      // const realm = await request(getProfil.data.realm.key.href, header);
-      // const media = await request(getProfil.data.media.href, header);
+      // Profil
+      const getRace = await request(getProfil.data.race.key.href, header);
+      const getRealm = await request(getProfil.data.realm.key.href, header);
+      const getMedia = await request(getProfil.data.media.href, header);
       // // Titles
       // const titles = await request(getProfil.data.titles.href, header);
       // // Reputations
@@ -36,15 +40,27 @@ const Home = () => {
       // // Pvp
       // const pvp = await request(getProfil.data.pvp_summary.href, header);
       setProfil(getProfil.data);
+      setRace(getRace.data);
+      setRealm(getRealm.data);
+      setMedia(getMedia.data);
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
-  console.log(profil);
   return (
     <>
       <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
       <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} />
       <input value={region} onChange={(e) => setRegion(e.target.value)} />
+      {media.bust_url
+        ? (
+          <HomeProfil
+            profil={profil}
+            race={race}
+            realm={realm}
+            media={media}
+          />
+        )
+        : <p>Loading...</p>}
     </>
   );
 };
