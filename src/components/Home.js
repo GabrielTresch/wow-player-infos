@@ -5,6 +5,7 @@ import AxiosHeader from '../api/AxiosHeader';
 import HomeProfil from './HomeProfil';
 import HomeTitles from './HomeTitles';
 import HomeReputation from './HomeReputation';
+import HomePvp from './HomePvp';
 
 const Auth = {
   auth: {
@@ -27,6 +28,7 @@ const Home = () => {
   const [media, setMedia] = useState({});
   const [titles, setTitles] = useState({});
   const [reputations, setReputations] = useState({});
+  const [pvp, setPvp] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -44,14 +46,16 @@ const Home = () => {
 
       // Reputations
       const getReputation = await request(getProfil.data.reputations.href, header);
-      // // Pvp
-      // const pvp = await request(getProfil.data.pvp_summary.href, header);
+      // Pvp
+      const getPvp = await request(getProfil.data.pvp_summary.href, header);
+
       setProfil(getProfil.data);
       setRace(getRace.data);
       setRealm(getRealm.data);
       setMedia(getMedia.data);
       setTitles(getTitles.data);
       setReputations(getReputation.data);
+      setPvp(getPvp.data);
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
@@ -68,6 +72,7 @@ const Home = () => {
       />
       <HomeTitles titles={titles} />
       <HomeReputation reputations={reputations} />
+      <HomePvp pvp={pvp} />
     </>
   );
 };
