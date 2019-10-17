@@ -4,6 +4,7 @@ import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
 import HomeProfil from './HomeProfil';
 import HomeTitles from './HomeTitles';
+import HomeReputation from './HomeReputation';
 
 const Auth = {
   auth: {
@@ -25,20 +26,24 @@ const Home = () => {
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
   const [titles, setTitles] = useState({});
+  const [reputations, setReputations] = useState({});
 
   useEffect(() => {
     async function fetchData() {
       const getToken = await request('https://eu.battle.net/oauth/token', Auth);
       const header = AxiosHeader(getToken.data.access_token);
       const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
+
       // Profil
       const getRace = await request(getProfil.data.race.key.href, header);
       const getRealm = await request(getProfil.data.realm.key.href, header);
       const getMedia = await request(getProfil.data.media.href, header);
+
       // Titles
       const getTitles = await request(getProfil.data.titles.href, header);
-      // // Reputations
-      // const reputation = await request(getProfil.data.reputations.href, header);
+
+      // Reputations
+      const getReputation = await request(getProfil.data.reputations.href, header);
       // // Pvp
       // const pvp = await request(getProfil.data.pvp_summary.href, header);
       setProfil(getProfil.data);
@@ -46,6 +51,7 @@ const Home = () => {
       setRealm(getRealm.data);
       setMedia(getMedia.data);
       setTitles(getTitles.data);
+      setReputations(getReputation.data);
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
@@ -61,6 +67,7 @@ const Home = () => {
         media={media}
       />
       <HomeTitles titles={titles} />
+      <HomeReputation reputations={reputations} />
     </>
   );
 };
