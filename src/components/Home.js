@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
+import Reputations from '../api/Reputations';
 import HomeProfil from './HomeProfil';
 import HomeTitles from './HomeTitles';
 import HomeReputation from './HomeReputation';
@@ -27,7 +27,7 @@ const Home = () => {
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
   const [titles, setTitles] = useState({});
-  const [reputations, setReputations] = useState({});
+  const [reputations, setReputations] = useState([]);
   const [pvp, setPvp] = useState({});
 
   useEffect(() => {
@@ -45,7 +45,9 @@ const Home = () => {
       const getTitles = await request(getProfil.data.titles.href, header);
 
       // Reputations
-      const getReputation = await request(getProfil.data.reputations.href, header);
+      const getReputation = await Reputations(getProfil.data.reputations.href, header);
+      // console.log(getReputation);
+
       // Pvp
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
 
@@ -54,11 +56,12 @@ const Home = () => {
       setRealm(getRealm.data);
       setMedia(getMedia.data);
       setTitles(getTitles.data);
-      setReputations(getReputation.data);
+      setReputations(getReputation);
       setPvp(getPvp.data);
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
+  console.log(reputations);
   return (
     <>
       <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
