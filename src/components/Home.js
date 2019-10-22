@@ -1,11 +1,14 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
-import Reputations from '../api/Reputations';
+// import Reputations from '../api/Reputations';
+import Specialization from '../api/Specialization';
 import HomeProfil from './HomeProfil';
 import HomeTitles from './HomeTitles';
-import HomeReputation from './HomeReputation';
+// import HomeReputation from './HomeReputation';
 import HomePvp from './HomePvp';
+import HomeSpe from './HomeSpe';
 
 const Auth = {
   auth: {
@@ -27,8 +30,9 @@ const Home = () => {
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
   const [titles, setTitles] = useState({});
-  const [reputations, setReputations] = useState([]);
+  // const [reputations, setReputations] = useState([]);
   const [pvp, setPvp] = useState({});
+  const [spe, setSpe] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -45,23 +49,27 @@ const Home = () => {
       const getTitles = await request(getProfil.data.titles.href, header);
 
       // Reputations
-      const getReputation = await Reputations(getProfil.data.reputations.href, header);
+      // const getReputation = await Reputations(getProfil.data.reputations.href, header);
       // console.log(getReputation);
 
       // Pvp
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
+
+      // Spe
+      const getSpe = await Specialization(getProfil.data, header);
 
       setProfil(getProfil.data);
       setRace(getRace.data);
       setRealm(getRealm.data);
       setMedia(getMedia.data);
       setTitles(getTitles.data);
-      setReputations(getReputation);
+      // setReputations(getReputation);
       setPvp(getPvp.data);
+      setSpe(getSpe);
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
-  console.log(reputations);
+  console.log(spe);
   return (
     <>
       <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
@@ -74,8 +82,13 @@ const Home = () => {
         media={media}
       />
       <HomeTitles titles={titles} />
-      <HomeReputation reputations={reputations} />
+      {/* <HomeReputation reputations={reputations} /> */}
       <HomePvp pvp={pvp} />
+      {spe !== undefined
+        ? (
+          <HomeSpe spe={spe} />
+        )
+        : <p>Loading...</p>}
     </>
   );
 };
