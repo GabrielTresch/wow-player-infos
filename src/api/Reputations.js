@@ -1,63 +1,67 @@
 import request from './Request';
 
 async function Reputations(url, header) {
+  const categoryArray = [];
+  const subCategoryArray = [];
+  let reputation = [];
+  let reputationArray = [];
+
   const reputations = await request(url, header);
   const getCategory = await request('https://eu.api.blizzard.com/data/wow/reputation-faction/index?namespace=static-eu&locale=fr_EU', header);
-
-  const categoryArray = [];
-  let reputationArray = [];
-  const subCategoryArray = [];
-  let subCategoryReputArray = [];
-
   getCategory.data.root_factions.forEach(async (e) => {
     const category = await request(e.key.href, header);
+
     if (category.data.factions !== undefined) {
-      category.data.factions.forEach(async (el) => {
-        reputations.data.reputations.forEach((element) => {
-          if (element.faction.name.fr_FR === el.name.fr_FR) {
-            reputationArray.push({
-              name: element.faction.name.fr_FR,
-              value: element.standing.value,
-              max: element.standing.max,
-              status: element.standing.name.fr_FR,
-            });
-          }
-        });
+      getCategory.data.factions.forEach(async (el, i) => {
         setTimeout(async () => {
-          const subCategory = await request(el.key.href, header);
-          if (subCategory.data.factions !== undefined) {
-            subCategory.data.factions.forEach((subElement) => {
-              reputations.data.reputations.forEach((rep) => {
-                if (rep.faction.name.fr_FR === subElement.name.fr_FR) {
-                  subCategoryReputArray.push({
-                    name: rep.faction.name.fr_FR,
-                    value: rep.standing.value,
-                    max: rep.standing.max,
-                    status: rep.standing.name.fr_FR,
+          const faction = await request(el.key.href, header);
+          if (faction.data.factions !== undefined) {
+            faction.data.factions.forEach((rep) => {
+              reputations.data.reputations.forEach((reput) => {
+                if (rep.name.fr_FR === reput.faction.name.fr_FR) {
+                  reputation.push({
+                    name: reput.faction.name.fr_FR,
+                    value: reput.standing.value,
+                    max: reput.standing.max,
+                    status: reput.standing.name.fr_FR,
                   });
                 }
               });
             });
-            if (subCategoryReputArray.length !== 0) {
-              subCategoryArray.push({
-                parentCategory: category.data.name.fr_FR,
-                subCategoryName: el.name.fr_FR,
-                reputations: subCategoryReputArray,
-              });
-            }
-            subCategoryReputArray = [];
+            category.data.factions.forEach((val) => {
+              if (val.name.fr_FR === faction.data.name.fr_FR) {
+                subCategoryArray.push({
+                  parentCategory: category.data.name.fr_FR,
+                  reputations: reputation,
+                  subCategory: val.name.fr_FR,
+                });
+              }
+              reputation = [];
+            });
+            reputationArray = [];
           }
-        }, 500);
+        }, i * 100);
       });
-    }
-    if (reputationArray.length !== 0) {
+      category.data.factions.forEach((rep) => {
+        reputations.data.reputations.forEach((reput) => {
+          if (rep.name.fr_FR === reput.faction.name.fr_FR) {
+            reputationArray.push({
+              name: reput.faction.name.fr_FR,
+              value: reput.standing.value,
+              max: reput.standing.max,
+              status: reput.standing.name.fr_FR,
+            });
+          }
+        });
+      });
+
       categoryArray.push({
         category: category.data.name.fr_FR,
-        reputations: reputationArray,
         subCategory: subCategoryArray,
+        reputation: reputationArray,
       });
+      reputationArray = [];
     }
-    reputationArray = [];
   });
   return categoryArray;
 }
