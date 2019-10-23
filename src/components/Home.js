@@ -8,7 +8,7 @@ import HomeProfil from './HomeProfil';
 import HomeTitles from './HomeTitles';
 // import HomeReputation from './HomeReputation';
 import HomePvp from './HomePvp';
-// import HomeSpe from './HomeSpe';
+import HomeSpe from './HomeSpe';
 
 const Auth = {
   auth: {
@@ -34,12 +34,23 @@ const Home = () => {
   const [pvp, setPvp] = useState({});
   const [spe, setSpe] = useState([]);
 
+  // const Spe = useCallback(async () => {
+  //   const header = AxiosHeader('EUEggU41IlXD2c43u3Pw3tWv3YpsGSKiBe');
+  //   const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
+  //   const getSpe = await Specialization(getProfil.data, header);
+  //   setSpe(getSpe);
+  // }, [pseudo, realmSlug, region]);
+
+
   useEffect(() => {
-    async function fetchData() {
+    // Spe();
+    const fetchData = async () => {
       const getToken = await request('https://eu.battle.net/oauth/token', Auth);
       const header = AxiosHeader(getToken.data.access_token);
       const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
 
+      const getSpe = await Specialization(getProfil.data, header);
+      setSpe(getSpe);
       // Profil
       const getRace = await request(getProfil.data.race.key.href, header);
       const getRealm = await request(getProfil.data.realm.key.href, header);
@@ -55,9 +66,6 @@ const Home = () => {
       // Pvp
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
 
-      // Spe
-      const getSpe = await Specialization(getProfil.data, header);
-
       setProfil(getProfil.data);
       setRace(getRace.data);
       setRealm(getRealm.data);
@@ -65,27 +73,34 @@ const Home = () => {
       setTitles(getTitles.data);
       // setReputations(getReputation);
       setPvp(getPvp.data);
-      setSpe(getSpe);
-    }
+    };
     fetchData();
   }, [pseudo, realmSlug, region]);
-  console.log(spe.length);
+  console.log(spe);
   return (
     <>
-      <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
-      <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} />
-      <input value={region} onChange={(e) => setRegion(e.target.value)} />
-      <HomeProfil
-        profil={profil}
-        race={race}
-        realm={realm}
-        media={media}
-      />
-      <HomeTitles titles={titles} />
-      {/* <HomeReputation reputations={reputations} /> */}
-      <HomePvp pvp={pvp} />
-      {/* <HomeSpe spe={spe} /> */}
+      <form>
+        <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} placeholder="yashuki" />
+        <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} placeholder="kaelthas" />
+        <input value={region} onChange={(e) => setRegion(e.target.value)} placeholder="eu" />
+      </form>
+      {profil.name !== undefined
+        ? (
+          <>
 
+            <HomeProfil
+              profil={profil}
+              race={race}
+              realm={realm}
+              media={media}
+            />
+            <HomeTitles titles={titles} />
+            {/* <HomeReputation reputations={reputations} /> */}
+            <HomePvp pvp={pvp} />
+            <HomeSpe spe={spe} />
+          </>
+        )
+        : <p>Loading...</p>}
     </>
   );
 };

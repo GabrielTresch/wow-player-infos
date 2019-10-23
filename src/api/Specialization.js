@@ -12,9 +12,11 @@ async function Specialization(data, header) {
   const specActive = await request(data.active_spec.key.href, header);
   const spec = await request(data.specializations.href, header);
   spec.data.specializations.forEach((el) => {
-    el.talents.forEach((element) => {
-      activTalents.push(element.talent.name.fr_FR);
-    });
+    if (el.talent !== undefined) {
+      el.talents.forEach((element) => {
+        activTalents.push(element.talent.name.fr_FR);
+      });
+    }
     if (el.pvp_talent_slots !== undefined) {
       el.pvp_talent_slots.forEach(async (pvpEl) => {
         pvpTalentsArray.push({
