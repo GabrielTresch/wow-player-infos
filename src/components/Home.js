@@ -8,7 +8,7 @@ import HomeProfil from './HomeProfil';
 import HomeTitles from './HomeTitles';
 // import HomeReputation from './HomeReputation';
 import HomePvp from './HomePvp';
-import HomeSpe from './HomeSpe';
+// import HomeSpe from './HomeSpe';
 
 const Auth = {
   auth: {
@@ -69,7 +69,7 @@ const Home = () => {
     }
     fetchData();
   }, [pseudo, realmSlug, region]);
-  console.log(spe);
+  console.log(spe.length);
   return (
     <>
       <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
@@ -84,11 +84,8 @@ const Home = () => {
       <HomeTitles titles={titles} />
       {/* <HomeReputation reputations={reputations} /> */}
       <HomePvp pvp={pvp} />
-      {spe !== undefined
-        ? (
-          <HomeSpe spe={spe} />
-        )
-        : <p>Loading...</p>}
+      {/* <HomeSpe spe={spe} /> */}
+
     </>
   );
 };

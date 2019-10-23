@@ -71,7 +71,7 @@ async function Specialization(data, header) {
     talentsArray = [];
     mediaArray = [];
     talentPvpArray = [];
-    // console.log(speArray);
+    console.log(speArray);
   });
   return speArray;
 }
