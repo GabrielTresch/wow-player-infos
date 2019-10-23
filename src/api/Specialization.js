@@ -5,14 +5,13 @@ async function Specialization(data, header) {
   const activTalents = [];
   let talentsArray = [];
   let talentArray = [];
-  let mediaArray = [];
   const pvpTalentsArray = [];
   let talentPvpArray = [];
 
   const specActive = await request(data.active_spec.key.href, header);
   const spec = await request(data.specializations.href, header);
   spec.data.specializations.forEach((el) => {
-    if (el.talent !== undefined) {
+    if (el.talents !== undefined) {
       el.talents.forEach((element) => {
         activTalents.push(element.talent.name.fr_FR);
       });
@@ -32,9 +31,6 @@ async function Specialization(data, header) {
   playableClass.data.specializations.forEach(async (e) => {
     const getSpe = await request(e.key.href, header);
     const media = await request(getSpe.data.media.key.href, header);
-    media.data.assets.forEach((speImg) => {
-      mediaArray.push(speImg.value);
-    });
 
     pvpTalentsArray.forEach((pvpE) => {
       if (pvpE.spe === getSpe.data.name.fr_FR) {
@@ -65,13 +61,12 @@ async function Specialization(data, header) {
     speArray.push({
       specialization: getSpe.data.name.fr_FR,
       role: getSpe.data.role.name.fr_FR,
-      media: mediaArray,
+      media: media.data.assets[0].value,
       talents: talentsArray,
       pvpTalents: talentPvpArray,
       active: getSpe.data.name.fr_FR === spec.data.active_specialization.name.fr_FR ? 'active' : 'desactive',
     });
     talentsArray = [];
-    mediaArray = [];
     talentPvpArray = [];
   });
   return speArray;
