@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 const HomeStats = ({ stats }) => (
   <>
-    {console.log(stats)}
     {stats !== undefined
       && stats.health !== undefined
       && stats.stamina.effective !== undefined

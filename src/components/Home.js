@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
@@ -6,6 +5,7 @@ import AxiosHeader from '../api/AxiosHeader';
 import Specialization from '../api/Specialization';
 import HomeProfil from './HomeProfil';
 import HomeStats from './HomeStats';
+import HomeStuff from './HomeStuff';
 import HomeTitles from './HomeTitles';
 // import HomeReputation from './HomeReputation';
 import HomePvp from './HomePvp';
@@ -28,6 +28,7 @@ const Home = () => {
   const [region, setRegion] = useState('eu');
   const [profil, setProfil] = useState({});
   const [stats, setStats] = useState({});
+  const [stuff, setStuff] = useState({});
   const [race, setRace] = useState({});
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
@@ -61,11 +62,15 @@ const Home = () => {
       // const getReputation = await Reputations(getProfil.data.reputations.href, header);
       // console.log(getReputation);
 
+      // Stuff
+      const getStuff = await request(getProfil.data.equipment.href, header);
+
       // Pvp
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
 
       setProfil(getProfil.data);
       setStats(getStats.data);
+      setStuff(getStuff.data);
       setRace(getRace.data);
       setRealm(getRealm.data);
       setMedia(getMedia.data);
@@ -75,6 +80,7 @@ const Home = () => {
     };
     fetchData();
   }, [pseudo, realmSlug, region]);
+  console.log(stuff);
   return (
     <>
       <form>
@@ -93,6 +99,7 @@ const Home = () => {
               media={media}
             />
             <HomeStats stats={stats} />
+            <HomeStuff stuff={stuff} />
             <HomeTitles titles={titles} />
             {/* <HomeReputation reputations={reputations} /> */}
             <HomePvp pvp={pvp} />
