@@ -5,6 +5,7 @@ import AxiosHeader from '../api/AxiosHeader';
 // import Reputations from '../api/Reputations';
 import Specialization from '../api/Specialization';
 import HomeProfil from './HomeProfil';
+import HomeStats from './HomeStats';
 import HomeTitles from './HomeTitles';
 // import HomeReputation from './HomeReputation';
 import HomePvp from './HomePvp';
@@ -26,6 +27,7 @@ const Home = () => {
   const [realmSlug, setRealmSlug] = useState('kaelthas');
   const [region, setRegion] = useState('eu');
   const [profil, setProfil] = useState({});
+  const [stats, setStats] = useState({});
   const [race, setRace] = useState({});
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
@@ -33,14 +35,6 @@ const Home = () => {
   // const [reputations, setReputations] = useState([]);
   const [pvp, setPvp] = useState({});
   const [spe, setSpe] = useState([]);
-
-  // const Spe = useCallback(async () => {
-  //   const header = AxiosHeader('EUEggU41IlXD2c43u3Pw3tWv3YpsGSKiBe');
-  //   const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
-  //   const getSpe = await Specialization(getProfil.data, header);
-  //   setSpe(getSpe);
-  // }, [pseudo, realmSlug, region]);
-
 
   useEffect(() => {
     // Spe();
@@ -51,10 +45,14 @@ const Home = () => {
 
       const getSpe = await Specialization(getProfil.data, header);
       setSpe(getSpe);
+
       // Profil
       const getRace = await request(getProfil.data.race.key.href, header);
       const getRealm = await request(getProfil.data.realm.key.href, header);
       const getMedia = await request(getProfil.data.media.href, header);
+
+      // Statistics
+      const getStats = await request(getProfil.data.statistics.href, header);
 
       // Titles
       const getTitles = await request(getProfil.data.titles.href, header);
@@ -67,6 +65,7 @@ const Home = () => {
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
 
       setProfil(getProfil.data);
+      setStats(getStats.data);
       setRace(getRace.data);
       setRealm(getRealm.data);
       setMedia(getMedia.data);
@@ -76,7 +75,6 @@ const Home = () => {
     };
     fetchData();
   }, [pseudo, realmSlug, region]);
-  console.log(spe);
   return (
     <>
       <form>
@@ -94,6 +92,7 @@ const Home = () => {
               realm={realm}
               media={media}
             />
+            <HomeStats stats={stats} />
             <HomeTitles titles={titles} />
             {/* <HomeReputation reputations={reputations} /> */}
             <HomePvp pvp={pvp} />
