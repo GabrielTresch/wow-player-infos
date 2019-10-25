@@ -7,6 +7,10 @@
 
 # testing
 /coverage
+/screen
+WowHomeOld.js
+Reputations_old.js
+Reputations_v2.js
 
 # production
 /build

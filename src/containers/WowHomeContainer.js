@@ -1,10 +1,10 @@
 import React from 'react';
-import WowHome from '../components/WowHome';
+import Home from '../components/Home';
 
 const LayoutContainer = () => (
   <div className="App">
     <main>
-      <WowHome />
+      <Home />
     </main>
   </div>
 );
