@@ -1,5 +1,5 @@
 import React from 'react';
-import WowHomeContainer from './WowHomeContainer';
+import WowHomeContainer from './HomeContainer';
 
 const LayoutContainer = () => (
   <div className="App">

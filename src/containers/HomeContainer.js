@@ -3,13 +3,13 @@ import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
 // import Reputations from '../api/Reputations';
 import Specialization from '../api/Specialization';
-import HomeProfil from './HomeProfil';
-import HomeStats from './HomeStats';
-import HomeStuff from './HomeStuff';
-import HomeTitles from './HomeTitles';
+import HomeProfil from '../components/HomeProfil';
+import HomeStats from '../components/HomeStats';
+import HomeStuff from '../components/HomeStuff';
+import HomeTitles from '../components/HomeTitles';
 // import HomeReputation from './HomeReputation';
-import HomePvp from './HomePvp';
-import HomeSpe from './HomeSpe';
+import HomePvp from '../components/HomePvp';
+import HomeSpe from '../components/HomeSpe';
 
 const Auth = {
   auth: {
@@ -80,7 +80,6 @@ const Home = () => {
     };
     fetchData();
   }, [pseudo, realmSlug, region]);
-  console.log(stuff);
   return (
     <>
       <form>
