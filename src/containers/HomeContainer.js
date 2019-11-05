@@ -35,14 +35,16 @@ const Home = () => {
   const [pvp, setPvp] = useState({});
   const [spe, setSpe] = useState([]);
 
-  const pseudo = useSelector((state) => state.pseudo);
-  const realmSlug = useSelector((state) => state.realmslug);
-  const region = useSelector((state) => state.region);
+  const pseudo = useSelector((state) => state.profil.pseudo);
+  const realmSlug = useSelector((state) => state.profil.realmslug);
+  const region = useSelector((state) => state.profil.region);
 
   useEffect(() => {
     const fetchData = async () => {
       const getToken = await request('https://eu.battle.net/oauth/token', Auth);
+
       const header = AxiosHeader(getToken.data.access_token);
+
       const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
 
       const getSpe = await Specialization(getProfil.data, header);

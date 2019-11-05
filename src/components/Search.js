@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import profil from '../redux/actions';
+import setProfil from '../redux/actions';
 
 const Search = () => {
   const dispatch = useDispatch();
   const handleClick = (event) => {
     event.preventDefault();
-    dispatch(profil(
+    dispatch(setProfil(
       event.target.pseudo.value,
       event.target.realmSlug.value,
       event.target.region.value,

@@ -3,12 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import profilReducer from './redux/reducers/setProfil';
+import allReducer from './redux/reducers';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
-  profilReducer,
+  allReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
