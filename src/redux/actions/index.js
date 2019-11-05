@@ -1,8 +1,8 @@
-const profil = (pseudo, realmslug, region) => ({
+const setProfil = (pseudo, realmslug, region) => ({
   type: 'SETPROFIL',
   pseudo,
   realmslug,
   region,
 });
 
-export default profil;
+export default setProfil;

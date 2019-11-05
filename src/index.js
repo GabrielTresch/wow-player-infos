@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import profilReducer from './redux/reducers/profil';
+import profilReducer from './redux/reducers/setProfil';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

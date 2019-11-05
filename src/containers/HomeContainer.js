@@ -25,9 +25,6 @@ const Auth = {
 
 
 const Home = () => {
-  // const [pseudo, setPseudo] = useState('yashuki');
-  // const [realmSlug, setRealmSlug] = useState('kaelthas');
-  // const [region, setRegion] = useState('eu');
   const [profil, setProfil] = useState({});
   const [stats, setStats] = useState({});
   const [stuff, setStuff] = useState({});
