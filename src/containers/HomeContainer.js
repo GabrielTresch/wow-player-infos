@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
+import AxiosAuth from '../api/AxiosAuth';
 // import Reputations from '../api/Reputations';
 import Specialization from '../api/Specialization';
 import HomeProfil from '../components/HomeProfil';
@@ -11,17 +12,6 @@ import HomeTitles from '../components/HomeTitles';
 // import HomeReputation from './HomeReputation';
 import HomePvp from '../components/HomePvp';
 import HomeSpe from '../components/HomeSpe';
-
-const Auth = {
-  auth: {
-    username: process.env.REACT_APP_USERNAME,
-    password: process.env.REACT_APP_PASSWORD,
-  },
-  params: {
-    grant_type: 'client_credentials',
-    scope: 'public',
-  },
-};
 
 const Home = () => {
   const [profil, setProfil] = useState({});
@@ -41,6 +31,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const Auth = AxiosAuth();
       const getToken = await request('https://eu.battle.net/oauth/token', Auth);
 
       const header = AxiosHeader(getToken.data.access_token);
