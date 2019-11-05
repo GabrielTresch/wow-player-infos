@@ -90,7 +90,6 @@ const Home = () => {
       {profil.name !== undefined
         ? (
           <>
-
             <HomeProfil
               profil={profil}
               race={race}

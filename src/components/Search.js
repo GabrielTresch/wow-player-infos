@@ -12,7 +12,6 @@ const Search = () => {
       event.target.region.value,
     ));
   };
-  // const test = useSelector((state) => state);
   return (
     <form onSubmit={handleClick}>
       <input name="pseudo" placeholder="yashuki" />
