@@ -23,7 +23,6 @@ const Auth = {
   },
 };
 
-
 const Home = () => {
   const [profil, setProfil] = useState({});
   const [stats, setStats] = useState({});
@@ -41,7 +40,6 @@ const Home = () => {
   const region = useSelector((state) => state.region);
 
   useEffect(() => {
-    // Spe();
     const fetchData = async () => {
       const getToken = await request('https://eu.battle.net/oauth/token', Auth);
       const header = AxiosHeader(getToken.data.access_token);
@@ -70,9 +68,7 @@ const Home = () => {
 
       // Pvp
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
-      // setPseudo('yashuki');
-      // setRealmSlug('kaelthas');
-      // setRegion('eu');
+
       setProfil(getProfil.data);
       setStats(getStats.data);
       setStuff(getStuff.data);
@@ -89,12 +85,6 @@ const Home = () => {
   }, [pseudo, realmSlug, region]);
   return (
     <>
-      {/* <form>
-        <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} placeholder="yashuki" />
-        <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} placeholder="kae" />
-        <input value={region} onChange={(e) => setRegion(e.target.value)} placeholder="eu" />
-        <input type="submit" value="Rechercher" />
-      </form> */}
       {profil.name !== undefined
         ? (
           <>
