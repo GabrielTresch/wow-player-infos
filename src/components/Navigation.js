@@ -8,6 +8,7 @@ const Navigation = () => (
     <NavLink to="/collection">Collection </NavLink>
     <NavLink to="/reputations">Réputation </NavLink>
     <NavLink to="/achevements">Achèvements </NavLink>
+    <a href="https://discordapp.com/api/oauth2/authorize?client_id=640593176473763841&permissions=317504&scope=bot" target="blank">bot discord</a>
   </nav>
 );
 
