@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import request from '../api/Request';
 import AxiosHeader from '../api/AxiosHeader';
 // import Reputations from '../api/Reputations';
@@ -22,10 +23,11 @@ const Auth = {
   },
 };
 
+
 const Home = () => {
-  const [pseudo, setPseudo] = useState('yashuki');
-  const [realmSlug, setRealmSlug] = useState('kaelthas');
-  const [region, setRegion] = useState('eu');
+  // const [pseudo, setPseudo] = useState('yashuki');
+  // const [realmSlug, setRealmSlug] = useState('kaelthas');
+  // const [region, setRegion] = useState('eu');
   const [profil, setProfil] = useState({});
   const [stats, setStats] = useState({});
   const [stuff, setStuff] = useState({});
@@ -36,6 +38,10 @@ const Home = () => {
   // const [reputations, setReputations] = useState([]);
   const [pvp, setPvp] = useState({});
   const [spe, setSpe] = useState([]);
+
+  const pseudo = useSelector((state) => state.pseudo);
+  const realmSlug = useSelector((state) => state.realmslug);
+  const region = useSelector((state) => state.region);
 
   useEffect(() => {
     // Spe();
@@ -67,7 +73,9 @@ const Home = () => {
 
       // Pvp
       const getPvp = await request(getProfil.data.pvp_summary.href, header);
-
+      // setPseudo('yashuki');
+      // setRealmSlug('kaelthas');
+      // setRegion('eu');
       setProfil(getProfil.data);
       setStats(getStats.data);
       setStuff(getStuff.data);
@@ -78,15 +86,18 @@ const Home = () => {
       // setReputations(getReputation);
       setPvp(getPvp.data);
     };
-    fetchData();
+    if (pseudo !== undefined) {
+      fetchData();
+    }
   }, [pseudo, realmSlug, region]);
   return (
     <>
-      <form>
+      {/* <form>
         <input value={pseudo} onChange={(e) => setPseudo(e.target.value)} placeholder="yashuki" />
-        <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} placeholder="kaelthas" />
+        <input value={realmSlug} onChange={(e) => setRealmSlug(e.target.value)} placeholder="kae" />
         <input value={region} onChange={(e) => setRegion(e.target.value)} placeholder="eu" />
-      </form>
+        <input type="submit" value="Rechercher" />
+      </form> */}
       {profil.name !== undefined
         ? (
           <>
