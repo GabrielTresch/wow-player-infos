@@ -31,14 +31,14 @@ const HomeSpe = ({ spe }) => (
         </ul>
         {value.pvpTalents.length > 0
           && (
-          <>
-            <h4>PvpTalents</h4>
-            <ul>
-              {value.pvpTalents.map((pvpTal) => (
-                <li key={pvpTal.talent}>{pvpTal.talent}</li>
-              ))}
-            </ul>
-          </>
+            <>
+              <h4>PvpTalents</h4>
+              <ul>
+                {value.pvpTalents.map((pvpTal) => (
+                  <li key={pvpTal.talent}>{pvpTal.talent}</li>
+                ))}
+              </ul>
+            </>
           )}
       </div>
     ))}
