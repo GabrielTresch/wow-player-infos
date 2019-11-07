@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Mounts from '../api/Mounts';
 import useIntersect from '../utils/useIntersect';
 
 const Mount = ({ id, href }) => {
+  const token = useSelector((state) => state.token);
   const [infos, setInfos] = useState(null);
   const [fetched, setFetched] = useState(false);
   const [ref, { entry }] = useIntersect({});
@@ -11,11 +13,11 @@ const Mount = ({ id, href }) => {
   useEffect(() => {
     if (entry.isIntersecting && !fetched) {
       setFetched(true);
-      Mounts(href).then((data) => {
+      Mounts(href, token).then((data) => {
         setInfos(data);
       });
     }
-  }, [entry.isIntersecting, fetched, href, infos]);
+  }, [entry.isIntersecting, fetched, href, infos, token]);
 
   return (
     <div ref={ref} id={id}>

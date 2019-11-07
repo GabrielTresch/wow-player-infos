@@ -1,8 +1,11 @@
-const setProfil = (pseudo, realmslug, region) => ({
+export const setProfil = (pseudo, realmslug, region) => ({
   type: 'SETPROFIL',
   pseudo,
   realmslug,
   region,
 });
 
-export default setProfil;
+export const setToken = (token) => ({
+  type: 'SETTOKEN',
+  token,
+});
