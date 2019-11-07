@@ -1,10 +1,8 @@
-/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const HomeReputation = ({ reputations }) => (
   <>
-    {console.log(reputations)}
     <h2>Reputations</h2>
     {reputations !== undefined
       ? (

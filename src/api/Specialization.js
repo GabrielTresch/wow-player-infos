@@ -1,4 +1,4 @@
-import request from './Request';
+import request from '../utils/Request';
 
 async function Specialization(data, header) {
   const speArray = [];
@@ -28,7 +28,7 @@ async function Specialization(data, header) {
 
   const playableClass = await request(specActive.data.playable_class.key.href, header);
 
-  playableClass.data.specializations.forEach(async (e) => {
+  await Promise.all(playableClass.data.specializations.map(async (e) => {
     const getSpe = await request(e.key.href, header);
     const media = await request(getSpe.data.media.key.href, header);
 
@@ -68,8 +68,8 @@ async function Specialization(data, header) {
     });
     talentsArray = [];
     talentPvpArray = [];
-  });
-  return speArray;
+  }));
+  return { data: speArray };
 }
 
 export default Specialization;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import request from '../api/Request';
-import AxiosHeader from '../api/AxiosHeader';
-import AxiosAuth from '../api/AxiosAuth';
+import request from '../utils/Request';
+import AxiosHeader from '../utils/AxiosHeader';
+import AxiosAuth from '../utils/AxiosAuth';
 // import Reputations from '../api/Reputations';
 import Specialization from '../api/Specialization';
 import HomeProfil from '../components/HomeProfil';
@@ -38,39 +38,42 @@ const Home = () => {
 
       const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
 
-      const getSpe = await Specialization(getProfil.data, header);
-      setSpe(getSpe);
+      const getSpe = Specialization(getProfil.data, header);
 
       // Profil
-      const getRace = await request(getProfil.data.race.key.href, header);
-      const getRealm = await request(getProfil.data.realm.key.href, header);
-      const getMedia = await request(getProfil.data.media.href, header);
+      const getRace = request(getProfil.data.race.key.href, header);
+      const getRealm = request(getProfil.data.realm.key.href, header);
+      const getMedia = request(getProfil.data.media.href, header);
 
       // Statistics
-      const getStats = await request(getProfil.data.statistics.href, header);
+      const getStats = request(getProfil.data.statistics.href, header);
 
       // Titles
-      const getTitles = await request(getProfil.data.titles.href, header);
+      const getTitles = request(getProfil.data.titles.href, header);
 
       // Reputations
-      // const getReputation = await Reputations(getProfil.data.reputations.href, header);
+      // const getReputation = Reputations(getProfil.data.reputations.href, header);
       // console.log(getReputation);
 
       // Stuff
-      const getStuff = await request(getProfil.data.equipment.href, header);
+      const getStuff = request(getProfil.data.equipment.href, header);
 
       // Pvp
-      const getPvp = await request(getProfil.data.pvp_summary.href, header);
-
+      const getPvp = request(getProfil.data.pvp_summary.href, header);
       setProfil(getProfil.data);
-      setStats(getStats.data);
-      setStuff(getStuff.data);
-      setRace(getRace.data);
-      setRealm(getRealm.data);
-      setMedia(getMedia.data);
-      setTitles(getTitles.data);
-      // setReputations(getReputation);
-      setPvp(getPvp.data);
+
+      // eslint-disable-next-line max-len
+      Promise.all([getRace, getRealm, getMedia, getStats, getTitles, getStuff, getPvp, getSpe]).then((result) => {
+        setStats(result[3].data);
+        setStuff(result[5].data);
+        setRace(result[0].data);
+        setRealm(result[1].data);
+        setMedia(result[2].data);
+        setTitles(result[5].data);
+        // setReputations(getReputation);
+        setPvp(result[6].data);
+        setSpe(result[7].data);
+      });
     };
     if (pseudo !== undefined) {
       fetchData();
