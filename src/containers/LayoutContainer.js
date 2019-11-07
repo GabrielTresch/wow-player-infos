@@ -1,12 +1,20 @@
 import React from 'react';
-import WowHomeContainer from './WowHomeContainer';
+import PropTypes from 'prop-types';
+import Navigation from '../components/Navigation';
+import Search from '../components/Search';
 
-const LayoutContainer = () => (
+const LayoutContainer = ({ children }) => (
   <div className="App">
+    <Navigation />
     <main>
-      <WowHomeContainer />
+      <Search />
+      { children }
     </main>
   </div>
 );
+
+LayoutContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default LayoutContainer;

@@ -14,7 +14,7 @@ const HomeStuff = ({ stuff }) => (
               && value.quality.name.fr_FR !== undefined
               && value.level.display_string.fr_FR !== undefined
               && value.binding.name.fr_FR !== undefined
-              && value.requirements.level.display_string.fr_FR !== undefined
+              && value.requirements !== undefined
               ? (
                 <>
                   <h3>{`${value.slot.name.fr_FR} (${value.quality.name.fr_FR})`}</h3>
@@ -28,7 +28,8 @@ const HomeStuff = ({ stuff }) => (
                     <li>{value.binding.name.fr_FR}</li>
                     {value.durability !== undefined
                       && (<li>{value.durability.display_string.fr_FR}</li>)}
-                    <li>{value.requirements.level.display_string.fr_FR}</li>
+                    {value.requirements.level !== undefined
+                      && <li>{value.requirements.level.display_string.fr_FR}</li>}
                     {value.sell_price !== undefined
                       && (<li>{`${value.sell_price.display_strings.header.fr_FR} ${value.sell_price.display_strings.gold.fr_FR} gold ${value.sell_price.display_strings.silver.fr_FR} silver ${value.sell_price.display_strings.copper.fr_FR} copper`}</li>)}
                   </ul>
