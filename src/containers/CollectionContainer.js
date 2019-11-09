@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../utils/Request';
 import AxiosHeader from '../utils/AxiosHeader';
-import Mount from '../components/Mount';
+import Mount from '../components/CollectionMount';
 
 const fetchData = async (pseudo, realmSlug, region, token) => {
   const header = AxiosHeader(token);
