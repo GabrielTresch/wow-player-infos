@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../utils/Request';
 import AxiosHeader from '../utils/AxiosHeader';
+import CollectionNavigation from '../components/CollectionNavigation';
 import Mount from '../components/CollectionMount';
 
 const fetchData = async (pseudo, realmSlug, region, token) => {
@@ -14,7 +15,7 @@ const fetchData = async (pseudo, realmSlug, region, token) => {
   return getMounts.data.mounts;
 };
 
-const CollectionContainer = () => {
+const CollectionMountContainer = () => {
   const [mounts, setMounts] = useState([]);
 
   const pseudo = useSelector((state) => state.profil.pseudo);
@@ -29,7 +30,8 @@ const CollectionContainer = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <>
-      <h1>Collection</h1>
+      <CollectionNavigation />
+      <h1>Montures</h1>
       {mounts.map((value) => (
         <div key={value.mount.id}>
           <Mount
@@ -42,4 +44,4 @@ const CollectionContainer = () => {
   );
 };
 
-export default CollectionContainer;
+export default CollectionMountContainer;
