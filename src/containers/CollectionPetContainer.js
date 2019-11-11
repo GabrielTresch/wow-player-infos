@@ -40,6 +40,9 @@ const CollectionPetContainer = () => {
             href={value.species.key.href}
             level={value.level}
             quality={value.quality.name.fr_FR}
+            health={value.stats.health}
+            power={value.stats.power}
+            speed={value.stats.speed}
           />
         </div>
       ))}

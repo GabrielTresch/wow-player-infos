@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import Pets from '../api/Pets';
 import useIntersect from '../utils/useIntersect';
 
-const CollectionPet = ({ href, level, quality }) => {
+const CollectionPet = ({
+  href, level, quality, health, power, speed,
+}) => {
   const token = useSelector((state) => state.token);
   const [infos, setInfos] = useState(null);
   const [fetched, setFetched] = useState(false);
@@ -24,11 +26,16 @@ const CollectionPet = ({ href, level, quality }) => {
       {infos
         ? (
           <>
-            <h2>{infos.name}</h2>
+            <h2>
+              <img src={infos.icon} alt={infos.name} />
+              {infos.name}
+            </h2>
             <p>{infos.description}</p>
             <p>{infos.source}</p>
             <p>{`Level: ${level}`}</p>
             <p>{`Quality: ${quality}`}</p>
+            <p>{`Type: ${infos.battle_pet_type}`}</p>
+            <p>{`Health: ${health} Power: ${power} Speed: ${speed}`}</p>
             <img src={infos.img} alt={infos.name} />
           </>
         ) : <p>Loading...</p>}
@@ -40,6 +47,9 @@ CollectionPet.propTypes = {
   href: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,
   quality: PropTypes.string.isRequired,
+  health: PropTypes.number.isRequired,
+  power: PropTypes.number.isRequired,
+  speed: PropTypes.number.isRequired,
 };
 
 export default CollectionPet;
