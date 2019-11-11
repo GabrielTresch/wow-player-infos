@@ -24,7 +24,10 @@ const CollectionMount = ({ id, href }) => {
       {infos
         ? (
           <>
-            <h2>{infos.name}</h2>
+            <h2>
+              <img src={infos.icon} alt={infos.name} />
+              {infos.name}
+            </h2>
             <p>{infos.description}</p>
             <p>{infos.source}</p>
             <img src={infos.img} alt="t" />

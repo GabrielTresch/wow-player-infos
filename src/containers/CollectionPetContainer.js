@@ -28,7 +28,6 @@ const CollectionPetContainer = () => {
       fetchData(pseudo, realmSlug, region, token).then((data) => setPets(data));
     }
   }, [pseudo, realmSlug, region, token]);
-  console.log(pets);
   return (
     <>
       <CollectionNavigation />

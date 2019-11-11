@@ -5,7 +5,6 @@ const Pets = async (href, token) => {
   const header = AxiosHeader(token);
   const pet = await request(href, header);
   const petImg = await request(pet.data.creature_display.key.href, header);
-  console.log(pet.data);
   const petArray = {
     icon: pet.data.icon,
     name: pet.data.name.fr_FR,
