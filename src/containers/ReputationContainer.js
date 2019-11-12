@@ -94,6 +94,8 @@ const ReputationContainer = () => {
             });
           });
           reput.push({
+            // eslint-disable-next-line no-nested-ternary
+            id: rootFactions.data.name.fr_FR === 'Classique' ? 0 : rootFactions.data.name.fr_FR === 'Guilde' ? 100000 : rootFactions.data.id,
             name: rootFactions.data.name.fr_FR,
             reputation: [...mainReput],
           });
@@ -101,16 +103,49 @@ const ReputationContainer = () => {
           subCategoryArray = [];
         }
       }));
+      reput.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+      reput.reverse();
       setReputation(reput);
     };
     if (pseudo && realmSlug && region && token) {
       fetchData();
     }
   }, [pseudo, realmSlug, region, token]);
-  console.log(reputation, '---', subReputation);
+  console.log(reputation);
   return (
     <>
       <h1>Reputations</h1>
+      {reputation !== undefined
+        ? (
+          <>
+            {reputation.map((value) => (
+              <div key={value.name}>
+                <h2>{value.name}</h2>
+                {value.reputation.map((val) => (
+                  <div key={val.name}>
+                    <p>{`${val.name} ${val.value}/${val.max} ${val.etat}`}</p>
+                  </div>
+                ))}
+                {subReputation.map((e) => (
+                  <div key={e.name}>
+                    {e.parentCategory === value.name
+                      && (
+                      <>
+                        <h3>{e.name}</h3>
+                        {e.subReput.map((el) => (
+                          <div key={el.name}>
+                            <p>{`${el.name} ${el.value}/${el.max} ${el.etat}`}</p>
+                          </div>
+                        ))}
+                      </>
+                      )}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </>
+        )
+        : <p>Loading...</p>}
     </>
   );
 };
