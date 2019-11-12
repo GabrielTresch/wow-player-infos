@@ -2,15 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../utils/Request';
 import AxiosHeader from '../utils/AxiosHeader';
-// import Reputations from '../api/Reputations';
-
-// const fetchData = async (pseudo, realmSlug, region, token) => {
-//   const header = AxiosHeader(token);
-//   const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
-
-//   // Reputations
-//   return Reputations(getProfil.data.reputations.href, header);
-// };
+import Reputation from '../components/Reputation';
 
 const ReputationContainer = () => {
   const [reputation, setReputation] = useState([]);
@@ -111,39 +103,15 @@ const ReputationContainer = () => {
       fetchData();
     }
   }, [pseudo, realmSlug, region, token]);
-  console.log(reputation);
   return (
     <>
       <h1>Reputations</h1>
       {reputation !== undefined
         ? (
-          <>
-            {reputation.map((value) => (
-              <div key={value.name}>
-                <h2>{value.name}</h2>
-                {value.reputation.map((val) => (
-                  <div key={val.name}>
-                    <p>{`${val.name} ${val.value}/${val.max} ${val.etat}`}</p>
-                  </div>
-                ))}
-                {subReputation.map((e) => (
-                  <div key={e.name}>
-                    {e.parentCategory === value.name
-                      && (
-                      <>
-                        <h3>{e.name}</h3>
-                        {e.subReput.map((el) => (
-                          <div key={el.name}>
-                            <p>{`${el.name} ${el.value}/${el.max} ${el.etat}`}</p>
-                          </div>
-                        ))}
-                      </>
-                      )}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </>
+          <Reputation
+            reputation={reputation}
+            subReputation={subReputation}
+          />
         )
         : <p>Loading...</p>}
     </>
