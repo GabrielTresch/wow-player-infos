@@ -1,7 +1,7 @@
 import request from '../utils/Request';
 import AxiosHeader from '../utils/AxiosHeader';
 
-const AchievementsCategories = async (token) => {
+const AchievementsCategories = async (token, actif) => {
   const header = AxiosHeader(token);
   const categoryArray = [];
   const category = await request('https://eu.api.blizzard.com/data/wow/achievement-category/index?namespace=static-eu&locale=fr_EU', header);
@@ -10,7 +10,8 @@ const AchievementsCategories = async (token) => {
     if (getCategory.data.name.fr_FR !== 'Guilde') {
       categoryArray.push({
         order: getCategory.data.display_order,
-        isActive: getCategory.data.display_order === 1,
+        // eslint-disable-next-line eqeqeq
+        isActive: getCategory.data.display_order == actif,
         rootCategories: getCategory.data.name.fr_FR,
         subCategories: getCategory.data.subcategories,
         achievements: getCategory.data.achievements,
