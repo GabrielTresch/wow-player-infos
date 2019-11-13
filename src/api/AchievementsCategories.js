@@ -10,12 +10,14 @@ const AchievementsCategories = async (token) => {
     if (getCategory.data.name.fr_FR !== 'Guilde') {
       categoryArray.push({
         order: getCategory.data.display_order,
+        isActive: getCategory.data.display_order === 1,
         rootCategories: getCategory.data.name.fr_FR,
         subCategories: getCategory.data.subcategories,
         achievements: getCategory.data.achievements,
       });
     }
   }));
+  categoryArray.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
   return categoryArray;
 };
 
