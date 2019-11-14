@@ -11,7 +11,10 @@ const AchievementsCategories = async (pseudo, realmSlug, region, token, actif) =
   const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
   const accountAchievements = await request(getProfil.data.achievements.href, header);
   accountAchievements.data.achievements.forEach((el) => {
-    accountAchievementArray.push(el.id);
+    accountAchievementArray.push({
+      id: el.id,
+      date: el.completed_timestamp,
+    });
   });
   await Promise.all(category.data.root_categories.map(async (value) => {
     const getCategory = await request(value.key.href, header);

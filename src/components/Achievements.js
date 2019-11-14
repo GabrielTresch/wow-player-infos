@@ -30,7 +30,15 @@ const Achievements = ({
       {infos
         ? (
           infos.map((value) => (
-            <p key={value.name}>{value.name}</p>
+            <div key={value.id}>
+              <h3>
+                <img src={value.icon} alt={value.name} />
+                {value.name}
+              </h3>
+              <p>{value.description}</p>
+              <p>{`Point: ${value.points}`}</p>
+              <p>{`Date: ${value.date}`}</p>
+            </div>
           ))
         )
         : <p>Loading...</p>}

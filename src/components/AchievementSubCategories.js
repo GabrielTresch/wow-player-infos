@@ -39,7 +39,6 @@ const AchievementSubCategories = ({ categories }) => {
                   )
                   : (
                     <>
-                      {console.log('aaa', value.achievements)}
                       <button type="button">Global</button>
                       <Achievements
                         allAchievement={value.achievements}
