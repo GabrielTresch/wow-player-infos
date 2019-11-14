@@ -25,7 +25,9 @@ const AchievementsContainer = () => {
             if (value.isActive === true) {
               if (value.subCategories.length !== 0) {
                 // console.log(value.subCategories[0].id);
-                dispatch(setActifAchiev(value.subCategories[0].id));
+                dispatch(setActifAchiev(value.subCategories[0].id.toString()));
+              } else {
+                dispatch(setActifAchiev('0'));
               }
             }
           });
