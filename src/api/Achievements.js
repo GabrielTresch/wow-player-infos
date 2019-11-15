@@ -70,6 +70,7 @@ const Achievements = async (subCategory, subCategoryActif, accountAchievements, 
       }
     }));
   }
+  achievArray.sort((a, b) => parseFloat(a.order) - parseFloat(b.order));
   return achievArray;
 };
 
