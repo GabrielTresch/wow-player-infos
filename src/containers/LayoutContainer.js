@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Navigation from '../components/Navigation';
 import Search from '../components/Search';
+import './LayoutContainer.scss';
 
 const LayoutContainer = ({ children }) => (
   <div className="App">
