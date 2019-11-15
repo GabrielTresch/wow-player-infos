@@ -21,28 +21,8 @@
   --raid-progress-full: #0A7727;
 }
 
-// Main colors
-$dark-grey: var(--dark-grey);
-$medium-grey: var(--medium-grey);
-$medium-light-grey: var(--medium-light-grey);
-$light-medium-grey: var(--light-medium-grey);
-$light-grey: var(--light-grey);
-$light-light-grey: var(--light-light-grey);
-$medium-white: var(--medium-white);
-$white: var(--white);
-$yellow: var(--yellow);
-// Quality
-$poor: var(--poor);
-$uncommun: var(--uncommun);
-$rare: var(--rare);
-$epique: var(--epique);
-$legendary: var(--legendary);
-// Raid progression
-$raid-progress-little: var(--raid-progress-little);
-$raid-progress-medium: var(--raid-progress-medium);
-$raid-progress-full: var(--raid-progress-full);
-
 body{
-  background: $medium-grey;
-  color: $white;
+  background: var(--medium-grey);
+  color: var(--white);
+  margin: 0;
 }
