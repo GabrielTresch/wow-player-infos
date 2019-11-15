@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Navigation from '../components/Navigation/Navigation';
-import Search from '../components/Search';
+import Search from '../components/Search/Search';
 import './LayoutContainer.scss';
 
 const LayoutContainer = ({ children }) => (

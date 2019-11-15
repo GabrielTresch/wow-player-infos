@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setProfil, setToken } from '../redux/actions';
-import AxiosAuth from '../utils/AxiosAuth';
-import request from '../utils/Request';
+import { setProfil, setToken } from '../../redux/actions';
+import AxiosAuth from '../../utils/AxiosAuth';
+import request from '../../utils/Request';
+import './Search.scss';
+// import SearchIcon from '../../assets/img/search.svg';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -18,10 +20,10 @@ const Search = () => {
   };
   return (
     <form onSubmit={handleClick}>
-      <input name="pseudo" placeholder="yashuki" />
-      <input name="realmSlug" placeholder="kaelthas" />
-      <input name="region" placeholder="eu" />
-      <input type="submit" value="Rechercher" />
+      <input name="pseudo" placeholder="Recherche d'un personnage" />
+      <input name="realmSlug" placeholder="kaelthas" className="input-select" />
+      <input name="region" placeholder="eu" className="input-select" />
+      <input type="submit" value="" />
     </form>
   );
 };
