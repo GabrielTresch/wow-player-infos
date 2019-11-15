@@ -1,0 +1,48 @@
+:root{
+  // Main colors
+  --dark-grey: #16191C;
+  --medium-grey: #262E35;
+  --medium-light-grey: #323B44;
+  --light-medium-grey: #414D53;
+  --light-grey: #485054;
+  --light-light-grey: #9EA3A7;
+  --medium-white: #E5EBEF;
+  --white: #FFFFFF;
+  --yellow: #F4BF2A;
+  // Quality
+  --poor: #9D9D9D;
+  --uncommun: #49BB39;
+  --rare: #0081FF;
+  --epique: #C664FF;
+  --legendary: #E5CC80;
+  // Raid progression
+  --raid-progress-little: #7A5830;
+  --raid-progress-medium: #F89D00;
+  --raid-progress-full: #0A7727;
+}
+
+// Main colors
+$dark-grey: var(--dark-grey);
+$medium-grey: var(--medium-grey);
+$medium-light-grey: var(--medium-light-grey);
+$light-medium-grey: var(--light-medium-grey);
+$light-grey: var(--light-grey);
+$light-light-grey: var(--light-light-grey);
+$medium-white: var(--medium-white);
+$white: var(--white);
+$yellow: var(--yellow);
+// Quality
+$poor: var(--poor);
+$uncommun: var(--uncommun);
+$rare: var(--rare);
+$epique: var(--epique);
+$legendary: var(--legendary);
+// Raid progression
+$raid-progress-little: var(--raid-progress-little);
+$raid-progress-medium: var(--raid-progress-medium);
+$raid-progress-full: var(--raid-progress-full);
+
+body{
+  background: $dark-grey;
+  color: $white;
+}

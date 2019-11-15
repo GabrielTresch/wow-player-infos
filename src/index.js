@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import allReducer from './redux/reducers';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './index.scss';
 
 const store = createStore(
   allReducer,
