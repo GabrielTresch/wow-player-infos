@@ -72,7 +72,7 @@ const Home = () => {
         setSpe(result[7].data);
       });
     };
-    if (pseudo !== undefined) {
+    if (pseudo && realmSlug && region && token) {
       fetchData();
     }
   }, [pseudo, realmSlug, region, token]);
