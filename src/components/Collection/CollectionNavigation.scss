@@ -1,0 +1,28 @@
+.collection-navigation{
+  margin: 20px auto;
+  border-bottom: 1px solid var(--light-grey);
+  padding-bottom: 10px;
+  a{
+    color:var(--white);
+    text-decoration: none;
+    margin-right: 10px;
+    padding-bottom: 11px;
+    position: relative;
+    span{
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      transition: 0.4s;
+    }
+  }
+  .active-link{
+    color: var(--yellow);
+    span{
+      width: 100%;
+      background: var(--yellow);
+    }
+  }
+}

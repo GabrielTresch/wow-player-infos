@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import Pets from '../api/Pets';
-import useIntersect from '../utils/useIntersect';
+import useIntersect from '../../utils/useIntersect';
+import Pets from '../../api/Pets';
 
 const CollectionPet = ({
   href, level, quality, health, power, speed,

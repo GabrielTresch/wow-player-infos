@@ -4,8 +4,8 @@ import Home from '../containers/HomeContainer';
 import Raid from '../containers/RaidProgressContainer';
 import Reputations from '../containers/ReputationContainer';
 import Achievements from '../containers/AchievementsContainer';
-import Mounts from '../containers/CollectionMountContainer';
-import Pets from '../containers/CollectionPetContainer';
+import Mounts from '../containers/Collection/CollectionMountContainer';
+import Pets from '../containers/Collection/CollectionPetContainer';
 
 const Routes = (
   <Switch>

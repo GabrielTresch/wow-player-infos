@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import request from '../utils/Request';
-import AxiosHeader from '../utils/AxiosHeader';
-import CollectionNavigation from '../components/CollectionNavigation';
-import Mount from '../components/CollectionMount';
+import request from '../../utils/Request';
+import AxiosHeader from '../../utils/AxiosHeader';
+import CollectionNavigation from '../../components/Collection/CollectionNavigation';
+import Mount from '../../components/Collection/CollectionMount';
+import './CollectionMountContainer.scss';
 
 const fetchData = async (pseudo, realmSlug, region, token) => {
   const header = AxiosHeader(token);
@@ -31,15 +32,15 @@ const CollectionMountContainer = () => {
   return (
     <>
       <CollectionNavigation />
-      <h1>Montures</h1>
-      {mounts.map((value) => (
-        <div key={value.mount.id}>
+      <div className="mount-container">
+        {mounts.map((value) => (
           <Mount
+            key={value.mount.id}
             id={value.mount.id}
             href={value.mount.key.href}
           />
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 };
