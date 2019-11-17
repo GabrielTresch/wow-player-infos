@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Mounts from '../../api/Mounts';
 import useIntersect from '../../utils/useIntersect';
 import './CollectionMount.scss';
+import '../../assets/scss/loader.scss';
 
 const CollectionMount = ({ id, href }) => {
   const token = useSelector((state) => state.token);
