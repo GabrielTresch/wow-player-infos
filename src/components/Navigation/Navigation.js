@@ -9,15 +9,12 @@ import ReputationIcon from '../../assets/img/ReputationIcon';
 import AchievementIcon from '../../assets/img/AchievementIcon';
 import DiscordIcon from '../../assets/img/DiscordIcon';
 import WowLogo from '../../assets/img/world-of-warcraft.svg';
-// import Avatar from '../../assets/img/avatar.jpg';
 
 const Navigation = () => {
-  // const pseudo = useSelector((state) => state.profil.pseudo);
   const avatar = useSelector((state) => state.profil.avatar);
   return (
     <nav>
       <img src={WowLogo} alt="Wow logo" className="wow-logo" />
-      {/* </a> */}
       <div className="link-container">
         <NavLink exact to="/" activeClassName="active-link">
           <UserIcon />

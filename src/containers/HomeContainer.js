@@ -7,7 +7,6 @@ import Specialization from '../api/Specialization';
 import HomeProfil from '../components/HomeProfil';
 import HomeStats from '../components/HomeStats';
 import HomeStuff from '../components/HomeStuff';
-import HomeTitles from '../components/HomeTitles';
 // import HomeReputation from './HomeReputation';
 import HomePvp from '../components/HomePvp';
 import HomeSpe from '../components/HomeSpe';
@@ -19,10 +18,10 @@ const Home = () => {
   const [race, setRace] = useState({});
   const [realm, setRealm] = useState({});
   const [media, setMedia] = useState({});
-  const [titles, setTitles] = useState({});
-  // const [reputations, setReputations] = useState([]);
+  const [activTitle, setTitles] = useState({});
   const [pvp, setPvp] = useState({});
   const [spe, setSpe] = useState([]);
+  const [activSpe, setActivSpe] = useState({});
 
   const pseudo = useSelector((state) => state.profil.pseudo);
   const realmSlug = useSelector((state) => state.profil.realmslug);
@@ -34,20 +33,19 @@ const Home = () => {
       const header = AxiosHeader(token);
 
       const getProfil = await request(`https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${pseudo}?namespace=profile-${region}&locale=fr_EU`, header);
-
       const getSpe = Specialization(getProfil.data, header);
 
       // Profil
       const getRace = request(getProfil.data.race.key.href, header);
       const getRealm = request(getProfil.data.realm.key.href, header);
       const getMedia = request(getProfil.data.media.href, header);
+      const getActivSpe = request(getProfil.data.active_spec.key.href, header);
 
       // Statistics
       const getStats = request(getProfil.data.statistics.href, header);
 
       // Titles
-      const getTitles = request(getProfil.data.titles.href, header);
-
+      const getTitles = request(getProfil.data.active_title.key.href, header);
       // Reputations
       // const getReputation = Reputations(getProfil.data.reputations.href, header);
       // console.log(getReputation);
@@ -60,16 +58,16 @@ const Home = () => {
       setProfil(getProfil.data);
 
       // eslint-disable-next-line max-len
-      Promise.all([getRace, getRealm, getMedia, getStats, getTitles, getStuff, getPvp, getSpe]).then((result) => {
+      Promise.all([getRace, getRealm, getMedia, getStats, getTitles, getStuff, getPvp, getSpe, getActivSpe]).then((result) => {
         setStats(result[3].data);
         setStuff(result[5].data);
         setRace(result[0].data);
         setRealm(result[1].data);
         setMedia(result[2].data);
-        setTitles(result[5].data);
-        // setReputations(getReputation);
+        setTitles(result[4].data);
         setPvp(result[6].data);
         setSpe(result[7].data);
+        setActivSpe(result[8].data);
       });
     };
     if (pseudo && realmSlug && region && token) {
@@ -79,6 +77,8 @@ const Home = () => {
   return (
     <>
       {profil.name !== undefined
+        && activTitle.name !== undefined
+        && activSpe.name !== undefined
         ? (
           <>
             <HomeProfil
@@ -86,11 +86,11 @@ const Home = () => {
               race={race}
               realm={realm}
               media={media}
+              activSpe={activSpe}
+              activTitle={activTitle}
             />
             <HomeStats stats={stats} />
             <HomeStuff stuff={stuff} />
-            <HomeTitles titles={titles} />
-            {/* <HomeReputation reputations={reputations} /> */}
             <HomePvp pvp={pvp} />
             <HomeSpe spe={spe} />
           </>
