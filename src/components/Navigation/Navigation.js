@@ -2,13 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
-import UserIcon from '../../assets/img/UserIcon';
-import RaidIcon from '../../assets/img/RaidIcon';
-import CollectionIcon from '../../assets/img/CollectionIcon';
-import ReputationIcon from '../../assets/img/ReputationIcon';
-import AchievementIcon from '../../assets/img/AchievementIcon';
-import DiscordIcon from '../../assets/img/DiscordIcon';
-import WowLogo from '../../assets/img/world-of-warcraft.svg';
+import UserIcon from '../../img/UserIcon';
+import RaidIcon from '../../img/RaidIcon';
+import CollectionIcon from '../../img/CollectionIcon';
+import ReputationIcon from '../../img/ReputationIcon';
+import AchievementIcon from '../../img/AchievementIcon';
+import DiscordIcon from '../../img/DiscordIcon';
+import WowLogo from '../../img/world-of-warcraft.svg';
 
 const Navigation = () => {
   const avatar = useSelector((state) => state.profil.avatar);
