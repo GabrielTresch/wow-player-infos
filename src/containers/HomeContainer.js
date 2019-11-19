@@ -4,7 +4,7 @@ import request from '../utils/Request';
 import AxiosHeader from '../utils/AxiosHeader';
 // import Reputations from '../api/Reputations';
 import Specialization from '../api/Specialization';
-import HomeProfil from '../components/HomeProfil';
+import HomeProfile from '../components/Profile/HomeProfile';
 import HomeStats from '../components/HomeStats';
 import HomeStuff from '../components/HomeStuff';
 // import HomeReputation from './HomeReputation';
@@ -46,9 +46,6 @@ const Home = () => {
 
       // Titles
       const getTitles = request(getProfil.data.active_title.key.href, header);
-      // Reputations
-      // const getReputation = Reputations(getProfil.data.reputations.href, header);
-      // console.log(getReputation);
 
       // Stuff
       const getStuff = request(getProfil.data.equipment.href, header);
@@ -81,8 +78,8 @@ const Home = () => {
         && activSpe.name !== undefined
         ? (
           <>
-            <HomeProfil
-              profil={profil}
+            <HomeProfile
+              profile={profil}
               race={race}
               realm={realm}
               media={media}
