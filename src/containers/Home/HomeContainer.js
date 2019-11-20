@@ -1,13 +1,15 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../../utils/Request';
 import AxiosHeader from '../../utils/AxiosHeader';
 import Specialization from '../../api/Specialization';
-import HomeProfile from '../../components/Profile/HomeProfile';
+import HomeProfile from '../../components/Home/HomeProfile';
 import HomeStats from '../../components/HomeStats';
 import HomeStuff from '../../components/HomeStuff';
 import HomePvp from '../../components/HomePvp';
 import HomeSpe from '../../components/HomeSpe';
+import './HomeContainer.scss';
 
 const Home = () => {
   const [profil, setProfil] = useState({});
@@ -71,7 +73,10 @@ const Home = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <>
-      {activSpe.name !== undefined
+    {pseudo && realmSlug && region && token
+      ? (
+        <div className="home-container">
+        {activSpe.name !== undefined
         ? (
           <HomeProfile
             profile={profil}
@@ -83,12 +88,22 @@ const Home = () => {
           />
         )
         : (
-          <p>ok</p>
+          <div className="profile-item item">ok</div>
         )}
-      <HomeStats stats={stats} />
+      {/* <div className="profile-item">Profile</div> */}
+      <div className="item spec-item">Specialization</div>
+      <div className="item stuff-item">Equipement</div>
+      <div className="item raid-item">Raid Progression</div>
+
+      {/* <HomeStats stats={stats} />
       <HomeStuff stuff={stuff} />
       <HomePvp pvp={pvp} />
-      <HomeSpe spe={spe} />
+      <HomeSpe spe={spe} /> */}
+    </div>
+      )
+      : (
+        <p>pas d'infos</p>
+      )}
     </>
   );
 };

@@ -30,7 +30,7 @@ const HomeProfile = ({
       && race.faction.name !== undefined
       && activTitle.name.fr_FR !== undefined
       ? (
-        <div className="profile-container">
+        <div className="profile-container profile-item">
           <div className="profile-background" style={{ backgroundImage: `url(${media.render_url})` }} />
           <div className="profile-content">
             <div className="profile-avatar" style={{ backgroundImage: `url(${media.bust_url})` }} />

@@ -1,0 +1,35 @@
+.home-container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 190px 190px 190px 190px ;
+  grid-gap: 10px;
+
+  .item{
+    background: var(--light-medium-grey);
+  }
+
+  .profile-item{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  
+  .spec-item{
+    grid-column-start: 3;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  
+  .stuff-item{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 5;
+  }
+  
+  .raid-item{
+    grid-column-start: 3;
+    grid-column-end: 7;
+  }
+}
