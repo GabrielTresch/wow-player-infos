@@ -42,3 +42,20 @@ body{
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+// Scroll bar 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-medium-grey);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--medium-light-grey);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1e2225;
+}

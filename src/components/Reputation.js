@@ -15,14 +15,14 @@ const Reputation = ({ reputation, subReputation }) => (
           <div key={e.name}>
             {e.parentCategory === value.name
               && (
-              <>
-                <h3>{e.name}</h3>
-                {e.subReput.map((el) => (
-                  <div key={el.name}>
-                    <p>{`${el.name} ${el.value}/${el.max} ${el.etat}`}</p>
-                  </div>
-                ))}
-              </>
+                <>
+                  <h3>{e.name}</h3>
+                  {e.subReput.map((el) => (
+                    <div key={el.name}>
+                      <p>{`${el.name} ${el.value}/${el.max} ${el.etat}`}</p>
+                    </div>
+                  ))}
+                </>
               )}
           </div>
         ))}

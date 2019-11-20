@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import request from '../utils/Request';
-import AxiosHeader from '../utils/AxiosHeader';
-// import Reputations from '../api/Reputations';
-import Specialization from '../api/Specialization';
-import HomeProfile from '../components/Profile/HomeProfile';
-import HomeStats from '../components/HomeStats';
-import HomeStuff from '../components/HomeStuff';
-// import HomeReputation from './HomeReputation';
-import HomePvp from '../components/HomePvp';
-import HomeSpe from '../components/HomeSpe';
+import request from '../../utils/Request';
+import AxiosHeader from '../../utils/AxiosHeader';
+import Specialization from '../../api/Specialization';
+import HomeProfile from '../../components/Profile/HomeProfile';
+import HomeStats from '../../components/HomeStats';
+import HomeStuff from '../../components/HomeStuff';
+import HomePvp from '../../components/HomePvp';
+import HomeSpe from '../../components/HomeSpe';
 
 const Home = () => {
   const [profil, setProfil] = useState({});
@@ -73,26 +71,24 @@ const Home = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <>
-      {profil.name !== undefined
-        && activTitle.name !== undefined
-        && activSpe.name !== undefined
+      {activSpe.name !== undefined
         ? (
-          <>
-            <HomeProfile
-              profile={profil}
-              race={race}
-              realm={realm}
-              media={media}
-              activSpe={activSpe}
-              activTitle={activTitle}
-            />
-            <HomeStats stats={stats} />
-            <HomeStuff stuff={stuff} />
-            <HomePvp pvp={pvp} />
-            <HomeSpe spe={spe} />
-          </>
+          <HomeProfile
+            profile={profil}
+            race={race}
+            realm={realm}
+            media={media}
+            activSpe={activSpe}
+            activTitle={activTitle}
+          />
         )
-        : <p>Loading...</p>}
+        : (
+          <p>ok</p>
+        )}
+      <HomeStats stats={stats} />
+      <HomeStuff stuff={stuff} />
+      <HomePvp pvp={pvp} />
+      <HomeSpe spe={spe} />
     </>
   );
 };
