@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 190px 190px 190px 190px ;
+  grid-template-rows: 190px 130px 130px 320px ;
   grid-gap: 10px;
 
   .item{
@@ -15,6 +15,7 @@
   }
   
   .spec-item{
+    background: var(--light-medium-grey);
     grid-column-start: 3;
     grid-column-end: 7;
     grid-row-start: 1;

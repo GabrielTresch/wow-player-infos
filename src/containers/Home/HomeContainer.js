@@ -8,7 +8,7 @@ import HomeProfile from '../../components/Home/HomeProfile';
 import HomeStats from '../../components/HomeStats';
 import HomeStuff from '../../components/HomeStuff';
 import HomePvp from '../../components/HomePvp';
-import HomeSpe from '../../components/HomeSpe';
+import HomeSpe from '../../components/Home/HomeSpe';
 import './HomeContainer.scss';
 
 const Home = () => {
@@ -88,12 +88,16 @@ const Home = () => {
           />
         )
         : (
-          <div className="profile-item item">ok</div>
+          <div className="profile-item item"></div>
         )}
-      {/* <div className="profile-item">Profile</div> */}
-      <div className="item spec-item">Specialization</div>
-      <div className="item stuff-item">Equipement</div>
-      <div className="item raid-item">Raid Progression</div>
+       {spe
+         ? (
+          <HomeSpe spe={spe} />
+         )
+         : <div className="item spec-item">Specialization</div>}
+
+      <div className="item stuff-item shadow">Equipement</div>
+      <div className="item raid-item shadow">Raid Progression</div>
 
       {/* <HomeStats stats={stats} />
       <HomeStuff stuff={stuff} />

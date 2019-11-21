@@ -1,7 +1,6 @@
 .profile-container{
   display:flex;
   position: relative;
-  box-shadow: 0 2px 4px rgba(0,0,0,.5);
   .profile-background{
     position: absolute;
     width: 100%;
@@ -26,6 +25,7 @@
       margin: 5px auto auto 10px;
       .profile-name{
         font-size: 18px;
+        font-weight: bold;
       }
       .profile-level{
         font-size: 13px;
@@ -38,7 +38,6 @@
         img{
           margin: auto 10px auto 0;
           width: 20px;
-          // margin: 5px 10px 0 0;
         }
       }
     }
