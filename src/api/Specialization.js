@@ -13,7 +13,7 @@ async function Specialization(data, header) {
   spec.data.specializations.forEach((el) => {
     if (el.talents !== undefined) {
       el.talents.forEach((element) => {
-        activTalents.push(element.talent.name.fr_FR);
+        activTalents.push(`${element.talent.name.fr_FR} ${el.specialization.name.fr_FR}`);
       });
     }
     if (el.pvp_talent_slots !== undefined) {
@@ -49,7 +49,7 @@ async function Specialization(data, header) {
           cooldown: value.spell_tooltip.cooldown ? value.spell_tooltip.cooldown.fr_FR : '',
           range: value.spell_tooltip.range ? value.spell_tooltip.range.fr_FR : '',
           cost: value.spell_tooltip.power_cost ? value.spell_tooltip.power_cost.fr_FR : '',
-          active: activTalents.includes(value.talent.name.fr_FR) ? 'active' : 'desactive',
+          active: activTalents.includes(`${value.talent.name.fr_FR} ${getSpe.data.name.fr_FR}`) ? 'active' : 'desactive',
         });
       });
       talentsArray.push({
