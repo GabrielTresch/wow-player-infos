@@ -1,0 +1,35 @@
+.stuff-container{
+  display:flex;
+  ul{
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    li{
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin: 6px auto;
+      div{
+        margin-right: 20px;
+        background-size: 90%;
+        background-position: center;
+        display:flex;
+        position: relative;
+        .stuff-azerite{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+        }
+        .stuff-icon{
+          margin: auto;
+          width:30px;
+        }
+      }
+      .stuff-name{
+        margin-right:auto;
+      }
+    }
+  }
+}
