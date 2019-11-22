@@ -2,8 +2,8 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 190px 130px 130px 320px ;
-  grid-gap: 10px;
+  grid-template-rows: 190px 130px 130px 280px ;
+  grid-gap: 20px;
 
   .item{
     background: var(--light-medium-grey);
