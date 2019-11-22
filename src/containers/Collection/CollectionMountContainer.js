@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../../utils/Request';
 import AxiosHeader from '../../utils/AxiosHeader';
-import CollectionNavigation from '../../components/Collection/CollectionNavigation';
 import Mount from '../../components/Collection/CollectionMount';
 import './CollectionMountContainer.scss';
 
@@ -30,18 +29,15 @@ const CollectionMountContainer = () => {
     }
   }, [pseudo, realmSlug, region, token]);
   return (
-    <>
-      <CollectionNavigation />
-      <div className="mount-container">
-        {mounts.map((value) => (
-          <Mount
-            key={value.mount.id}
-            id={value.mount.id}
-            href={value.mount.key.href}
-          />
-        ))}
-      </div>
-    </>
+    <div className="mount-container">
+      {mounts.map((value) => (
+        <Mount
+          key={value.mount.id}
+          id={value.mount.id}
+          href={value.mount.key.href}
+        />
+      ))}
+    </div>
   );
 };
 

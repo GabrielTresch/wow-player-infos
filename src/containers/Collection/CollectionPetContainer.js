@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import request from '../../utils/Request';
 import AxiosHeader from '../../utils/AxiosHeader';
-import CollectionNavigation from '../../components/Collection/CollectionNavigation';
 import Pet from '../../components/Collection/CollectionPet';
 
 const fetchData = async (pseudo, realmSlug, region, token) => {
@@ -30,7 +29,6 @@ const CollectionPetContainer = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <>
-      <CollectionNavigation />
       {pets.map((value, i) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={i}>
