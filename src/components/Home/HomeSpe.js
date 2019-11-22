@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './HomeSpe.scss';
 
 const HomeSpe = ({ spe }) => (
-  <div className="spe-container spec-item shadow">
+  <div className="spe-container spec-item item shadow">
     <div className="spec-navigation">
       {spe.map((value) => (
         <img key={value.specialization} src={value.media} className={value.active === 'active' ? 'spec-img-active' : 'spec-img'} alt={value.specialization} />

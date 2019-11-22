@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import iconHorde from '../../img/horde.png';
-import iconAlliance from '../../img/alliance.png';
+import iconHorde from '../../img/faction/horde.png';
+import iconAlliance from '../../img/faction/alliance.png';
 import './HomeProfile.scss';
 import Druid from '../../img/classes/Druid.png';
 import Rogue from '../../img/classes/Rogue.png';

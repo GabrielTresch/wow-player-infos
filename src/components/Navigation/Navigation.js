@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
-import UserIcon from '../../img/UserIcon';
-import RaidIcon from '../../img/RaidIcon';
-import CollectionIcon from '../../img/CollectionIcon';
-import ReputationIcon from '../../img/ReputationIcon';
-import AchievementIcon from '../../img/AchievementIcon';
-import DiscordIcon from '../../img/DiscordIcon';
+import UserIcon from '../../img/navigation/UserIcon';
+import RaidIcon from '../../img/navigation/RaidIcon';
+import CollectionIcon from '../../img/navigation/CollectionIcon';
+import ReputationIcon from '../../img/navigation/ReputationIcon';
+import AchievementIcon from '../../img/navigation/AchievementIcon';
+import DiscordIcon from '../../img/navigation/DiscordIcon';
 import WowLogo from '../../img/world-of-warcraft.svg';
 
 const Navigation = () => {
