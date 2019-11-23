@@ -1,0 +1,56 @@
+.pet-vignette{
+  width: 45%;
+  margin: auto;
+  height: 110px;
+  margin-bottom: 20px;
+  background: var(--dark-grey);
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  .pet-infos-container{
+    display:flex;
+    .pet-icon{
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;;
+    }
+    .pet-infos-content{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .pet-infos{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        h2{
+          font-size: 19px;
+          margin: 0 0 0 5px;
+        }
+        span{
+          margin-left: auto;
+        }
+      }
+      .pet-stats{
+        width: 100%;
+        margin-top: auto;
+        span{
+          font-size: 12px;
+          img{
+            width:10px;
+            margin: auto 5px;
+          }
+        }
+      }
+    }
+  }
+  p{
+    font-size: 13px;
+    margin: auto;
+    margin-left: 0;
+    color: var(--light-light-grey);
+  }
+  .pet-img{
+    display: none;
+  }
+}

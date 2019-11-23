@@ -23,7 +23,7 @@ const CollectionMount = ({ id, href }) => {
   }, [entry.isIntersecting, fetched, href, infos, token]);
 
   return (
-    <div ref={ref} id={id} className="mount-img-container">
+    <div ref={ref} id={id} className="mount-vignette">
       {infos
         ? (
           <img src={infos.img} alt={infos.name} />

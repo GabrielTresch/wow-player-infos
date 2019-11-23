@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import request from '../../utils/Request';
 import AxiosHeader from '../../utils/AxiosHeader';
 import Pet from '../../components/Collection/CollectionPet';
+import './CollectionPetContainer.scss';
 
 const fetchData = async (pseudo, realmSlug, region, token) => {
   const header = AxiosHeader(token);
@@ -28,21 +29,20 @@ const CollectionPetContainer = () => {
     }
   }, [pseudo, realmSlug, region, token]);
   return (
-    <>
+    <div className="pet-container">
       {pets.map((value, i) => (
+        <Pet
         // eslint-disable-next-line react/no-array-index-key
-        <div key={i}>
-          <Pet
-            href={value.species.key.href}
-            level={value.level}
-            quality={value.quality.name.fr_FR}
-            health={value.stats.health}
-            power={value.stats.power}
-            speed={value.stats.speed}
-          />
-        </div>
+          key={i}
+          href={value.species.key.href}
+          level={value.level}
+          quality={value.quality.name.en_US}
+          health={value.stats.health}
+          power={value.stats.power}
+          speed={value.stats.speed}
+        />
       ))}
-    </>
+    </div>
   );
 };
 

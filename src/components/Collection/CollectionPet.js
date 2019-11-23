@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import useIntersect from '../../utils/useIntersect';
 import Pets from '../../api/Pets';
+import './CollectionPet.scss';
+import Health from '../../img/collection/health.svg';
+import Power from '../../img/collection/power.svg';
+import Speed from '../../img/collection/speed.svg';
 
 const CollectionPet = ({
   href, level, quality, health, power, speed,
@@ -22,21 +26,35 @@ const CollectionPet = ({
   }, [entry.isIntersecting, fetched, href, infos, token]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="pet-vignette">
       {infos
         ? (
           <>
-            <h2>
-              <img src={infos.icon} alt={infos.name} />
-              {infos.name}
-            </h2>
+            <div className="pet-infos-container">
+              <img src={infos.icon} alt={infos.name} className="pet-icon" />
+              <div className="pet-infos-content">
+                <div className="pet-infos">
+                  <h2 className={quality} style={{ color: `var(--${quality})` }}>{infos.name}</h2>
+                  <span>{`${infos.battle_pet_type} Level ${level}`}</span>
+                </div>
+                <div className="pet-stats">
+                  <span>
+                    <img src={Health} alt="health icon" />
+                    {health}
+                  </span>
+                  <span>
+                    <img src={Power} alt="power icon" />
+                    {power}
+                  </span>
+                  <span>
+                    <img src={Speed} alt="speed icon" />
+                    {speed}
+                  </span>
+                </div>
+              </div>
+            </div>
             <p>{infos.description}</p>
-            <p>{infos.source}</p>
-            <p>{`Level: ${level}`}</p>
-            <p>{`Quality: ${quality}`}</p>
-            <p>{`Type: ${infos.battle_pet_type}`}</p>
-            <p>{`Health: ${health} Power: ${power} Speed: ${speed}`}</p>
-            <img src={infos.img} alt={infos.name} />
+            <img src={infos.img} alt={infos.name} className="pet-img" />
           </>
         ) : <p>Loading...</p>}
     </div>
