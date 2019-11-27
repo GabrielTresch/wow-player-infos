@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Leaderboard.scss';
 
 const Leaderboard = ({ leaderboard }) => (
-  <table>
+  <table className="leaderboard">
     <thead>
       <tr>
         <th>rank</th>
