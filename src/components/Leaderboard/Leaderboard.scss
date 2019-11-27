@@ -1,0 +1,19 @@
+table {
+  border-collapse: collapse;
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: var(--yellow);
+    color: var(--dark-grey);
+  }
+  tr{
+    &:nth-child(even){
+      background-color: var(--medium-light-grey)
+    }
+  }
+}

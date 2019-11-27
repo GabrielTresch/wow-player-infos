@@ -31,7 +31,7 @@ const Search = () => {
   };
   return (
     <form onSubmit={handleClick}>
-      <input name="pseudo" placeholder="Recherche d'un personnage" />
+      <input name="pseudo" placeholder="yashuki" />
       <input name="realmSlug" placeholder="kaelthas" className="input-select" />
       <input name="region" placeholder="eu" className="input-select" />
       <input type="submit" value="" />

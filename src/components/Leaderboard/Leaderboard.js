@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Leaderboard.scss';
 
 const Leaderboard = ({ leaderboard }) => (
   <table>
@@ -14,7 +15,7 @@ const Leaderboard = ({ leaderboard }) => (
       {leaderboard.map((value, i) => (
         <tr key={value.date}>
           <td>{i + 1}</td>
-          <td>{value.guild}</td>
+          <td style={{ color: `var(--${value.faction})` }}>{value.guild}</td>
           <td>{`${value.region.toUpperCase()} - ${value.realm}`}</td>
         </tr>
       ))}
