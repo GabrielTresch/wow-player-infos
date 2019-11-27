@@ -72,42 +72,34 @@ const Home = () => {
     }
   }, [pseudo, realmSlug, region, token]);
   return (
-    <>
-      {pseudo && realmSlug && region && token
+    <div className="home-container">
+      {activSpe.name !== undefined
         ? (
-          <div className="home-container">
-            {activSpe.name !== undefined
-              ? (
-                <HomeProfile
-                  profile={profil}
-                  race={race}
-                  realm={realm}
-                  media={media}
-                  activSpe={activSpe}
-                  activTitle={activTitle}
-                />
-              )
-              : (
-                <div className="profile-item item" />
-              )}
-            {spe
-              ? (
-                <HomeSpe spe={spe} />
-              )
-              : <div className="item spec-item">Specialization</div>}
-            {stuff
-              ? (
-                <HomeStuff stuff={stuff} />
-              )
-              : <div className="item stuff-item shadow">Equipement</div>}
-
-            <div className="item raid-item shadow">Raid Progression</div>
-          </div>
+          <HomeProfile
+            profile={profil}
+            race={race}
+            realm={realm}
+            media={media}
+            activSpe={activSpe}
+            activTitle={activTitle}
+          />
         )
         : (
-          <p>pas dinfos</p>
+          <div className="profile-item item" />
         )}
-    </>
+      {spe
+        ? (
+          <HomeSpe spe={spe} />
+        )
+        : <div className="item spec-item">Specialization</div>}
+      {stuff
+        ? (
+          <HomeStuff stuff={stuff} />
+        )
+        : <div className="item stuff-item shadow">Equipement</div>}
+
+      <div className="item raid-item shadow">Raid Progression</div>
+    </div>
   );
 };
 
