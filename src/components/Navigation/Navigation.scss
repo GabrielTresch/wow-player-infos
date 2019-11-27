@@ -7,6 +7,7 @@ nav{
   height:100vh;
   display: flex;
   flex-direction: column;
+  z-index: 1;
   .wow-logo{
     width: 50px;
     display: block;
@@ -44,6 +45,16 @@ nav{
       color: var(--white);
       background: var(--medium-grey);
       border-radius: 8px;
+    }
+  }
+  .toggle-menu{
+    margin: 0 auto 10px auto;
+    cursor: pointer;
+    background: transparent;
+    border:none;
+    outline: none;
+    img{
+      width: 19px;
     }
   }
 }

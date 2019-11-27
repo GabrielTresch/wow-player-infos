@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { TweenLite } from 'gsap';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import UserIcon from '../../img/navigation/UserIcon';
@@ -10,12 +11,32 @@ import AchievementIcon from '../../img/navigation/AchievementIcon';
 import StuffIcon from '../../img/navigation/StuffIcon';
 import DiscordIcon from '../../img/navigation/DiscordIcon';
 import WowLogo from '../../img/world-of-warcraft.svg';
+import ToggleNav from '../../img/navigation/close.svg';
 
 const Navigation = () => {
   const avatar = useSelector((state) => state.profil.avatar);
+
+  const [navAnim, setNavAnim] = useState();
+  const [toggleAnim, setToggleAnim] = useState();
+  let navRef = useRef();
+  let toggleRef = useRef();
+
+  const toggle = () => {
+    navAnim.reversed(!navAnim.reversed());
+    toggleAnim.reversed(!toggleAnim.reversed());
+    document.querySelector('.navigation').classList.toggle('nav-open');
+  };
+
+  useEffect(() => {
+    setNavAnim(TweenLite.to(navRef, 0.4, { width: 150 }).reverse());
+    setToggleAnim(TweenLite.to(toggleRef, 0.4, { rotate: 180 }).reverse());
+  }, []);
+
   return (
-    <nav>
-      <img src={WowLogo} alt="Wow logo" className="wow-logo" />
+    <nav className="navigation" ref={(element) => { navRef = element; }}>
+      <div className="logo-container">
+        <img src={WowLogo} alt="Wow logo" className="wow-logo" />
+      </div>
       <div className="link-container">
         <NavLink exact to="/" activeClassName="active-link">
           <UserIcon />
@@ -39,6 +60,8 @@ const Navigation = () => {
           <DiscordIcon />
         </a>
       </div>
+      <button type="button" className="toggle-menu" onClick={toggle} ref={(element) => { toggleRef = element; }}><img src={ToggleNav} alt="toggle navigation" /></button>
+
       {avatar ? <img src={avatar} alt="avatar" className="avatar" /> : false}
     </nav>
   );
