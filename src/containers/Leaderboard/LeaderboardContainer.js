@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import Leaderboard from '../../api/Leaderboard';
-import './LeaderboardContainer.scss';
+import LeaderboardInfos from '../../api/Leaderboard';
+import Leaderboard from '../../components/Leaderboard/Leaderboard';
 
 const LeaderboardContainer = () => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -9,13 +9,12 @@ const LeaderboardContainer = () => {
   const token = useSelector((state) => state.token);
 
   useEffect(() => {
-    Leaderboard(token).then((data) => {
+    LeaderboardInfos(token).then((data) => {
       setLeaderboard(data);
     });
   }, [token]);
-  console.log(leaderboard);
   return (
-    <h1>Leaderboard</h1>
+    <Leaderboard leaderboard={leaderboard} />
   );
 };
 
