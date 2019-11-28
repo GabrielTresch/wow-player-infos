@@ -20,19 +20,25 @@ nav{
     border-radius: 100%;;
   }
   .link-container{
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    overflow: hidden;
     a{
-      width: 38px;
-      height: 38px;
-      color: var(--light-grey);
-      margin-top: 8px;
+      width:150px;
       display: flex;
+      align-items: center;
+      color: var(--light-grey);
+      text-decoration: none;
+      margin-top: 15px;
       svg{
-        margin: auto;
-        width:19px;
+        min-width: 19px;
+        margin: auto 5px auto 18px;
+      }
+      span {
+        font-size: 14px;
+        display: none;
       }
     }
     .discord-link{
@@ -43,8 +49,6 @@ nav{
     }
     .active-link{
       color: var(--white);
-      background: var(--medium-grey);
-      border-radius: 8px;
     }
   }
   .toggle-menu{
@@ -55,6 +59,18 @@ nav{
     outline: none;
     img{
       width: 19px;
+    }
+  }
+}
+
+.nav-open{
+  .link-container{
+    a{
+      span{
+        display:block;
+      }
+      svg{
+      }
     }
   }
 }

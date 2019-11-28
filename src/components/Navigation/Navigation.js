@@ -28,8 +28,8 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    setNavAnim(TweenLite.to(navRef, 0.4, { width: 150 }).reverse());
-    setToggleAnim(TweenLite.to(toggleRef, 0.4, { rotate: 180 }).reverse());
+    setNavAnim(TweenLite.to(navRef, 0.2, { width: 160 }).reverse());
+    setToggleAnim(TweenLite.to(toggleRef, 0.2, { rotate: 180 }).reverse());
   }, []);
 
   return (
@@ -40,24 +40,31 @@ const Navigation = () => {
       <div className="link-container">
         <NavLink exact to="/" activeClassName="active-link">
           <UserIcon />
+          <span>Profil</span>
         </NavLink>
         <NavLink to="/raid-progression" activeClassName="active-link">
           <RaidIcon />
+          <span>Raid progression</span>
         </NavLink>
         <NavLink to="/collection/montures" activeClassName="active-link">
           <CollectionIcon />
+          <span>Collection</span>
         </NavLink>
         <NavLink to="/reputations" activeClassName="active-link">
           <ReputationIcon />
+          <span>Réputations</span>
         </NavLink>
         <NavLink to="/achevements" activeClassName="active-link">
           <AchievementIcon />
+          <span>Hauts Faits</span>
         </NavLink>
         <NavLink to="/equipements" activeClassName="active-link">
           <StuffIcon />
+          <span>Équipements</span>
         </NavLink>
         <a href="https://discordapp.com/api/oauth2/authorize?client_id=640593176473763841&permissions=317504&scope=bot" target="blank" aria-label="Discord Bot" className="discord-link">
           <DiscordIcon />
+          <span>Bot discord</span>
         </a>
       </div>
       <button type="button" className="toggle-menu" onClick={toggle} ref={(element) => { toggleRef = element; }}><img src={ToggleNav} alt="toggle navigation" /></button>
