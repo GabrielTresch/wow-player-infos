@@ -33,3 +33,9 @@
     grid-column-end: 7;
   }
 }
+
+@media screen and(max-width: 1400px){
+  .home-container{
+    background:red;
+  }
+}
