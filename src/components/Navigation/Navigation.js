@@ -28,7 +28,7 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    setNavAnim(TweenLite.to(navRef, 0.2, { width: 160 }).reverse());
+    setNavAnim(TweenLite.to(navRef, 0.2, { width: 160 }, { delay: 0.4 }).reverse());
     setToggleAnim(TweenLite.to(toggleRef, 0.2, { rotate: 180 }).reverse());
   }, []);
 

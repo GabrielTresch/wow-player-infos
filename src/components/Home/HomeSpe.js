@@ -19,7 +19,7 @@ const HomeSpe = ({ spe }) => (
               <tr key={val.level}>
                 <td>{val.level}</td>
                 {val.talent.map((element) => (
-                  <td key={element.talent} className={element.active === 'active' ? 'active-spell spell' : 'spell'}>
+                  <td key={element.talent} className={element.active === 'active' ? 'active-spell spell' : 'inactif-spell spell'}>
                     <div>
                       <img src="https://render-eu.worldofwarcraft.com/icons/56/ability_druid_improvedtreeform.jpg" alt="spell" />
                       <div>
