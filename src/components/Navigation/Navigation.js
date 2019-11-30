@@ -15,6 +15,8 @@ import ToggleNav from '../../img/navigation/close.svg';
 
 const Navigation = () => {
   const avatar = useSelector((state) => state.profil.avatar);
+  const name = useSelector((state) => state.profil.characterName);
+  const level = useSelector((state) => state.profil.level);
 
   const [navAnim, setNavAnim] = useState();
   const [toggleAnim, setToggleAnim] = useState();
@@ -36,6 +38,7 @@ const Navigation = () => {
     <nav className="navigation" ref={(element) => { navRef = element; }}>
       <div className="logo-container">
         <img src={WowLogo} alt="Wow logo" className="wow-logo" />
+        <h2>World of Warcraft</h2>
       </div>
       <div className="link-container">
         <NavLink exact to="/" activeClassName="active-link">
@@ -69,7 +72,15 @@ const Navigation = () => {
       </div>
       <button type="button" className="toggle-menu" onClick={toggle} ref={(element) => { toggleRef = element; }}><img src={ToggleNav} alt="toggle navigation" /></button>
 
-      {avatar ? <img src={avatar} alt="avatar" className="avatar" /> : false}
+      <div className="avatar-container">
+        {avatar ? <img src={avatar} alt="avatar" className="avatar" /> : false}
+        {name ? (
+          <div>
+            <span className="avatar-name">{name}</span>
+            <span className="avatar-level">{`Niveau ${level}`}</span>
+          </div>
+        ) : false}
+      </div>
     </nav>
   );
 };
