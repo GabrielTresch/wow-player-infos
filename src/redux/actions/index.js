@@ -1,9 +1,11 @@
-export const setProfil = (pseudo, realmslug, region, avatar) => ({
+export const setProfil = (pseudo, realmslug, region, avatar, characterName, level) => ({
   type: 'SETPROFIL',
   pseudo,
   realmslug,
   region,
   avatar,
+  characterName,
+  level,
 });
 
 export const setToken = (token) => ({

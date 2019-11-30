@@ -6,6 +6,8 @@ const profilReducer = (state = '', action) => {
         realmslug: action.realmslug,
         region: action.region,
         avatar: action.avatar,
+        characterName: action.characterName,
+        level: action.level,
       };
     default:
       return state;
