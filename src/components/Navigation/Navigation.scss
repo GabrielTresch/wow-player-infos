@@ -8,6 +8,7 @@ nav{
   display: flex;
   flex-direction: column;
   z-index: 1;
+  overflow: hidden;
   .logo-container{
     width: 100%;
     display: flex;

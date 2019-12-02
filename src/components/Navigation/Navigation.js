@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { TweenLite } from 'gsap';
+import gsap from 'gsap';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import UserIcon from '../../img/navigation/UserIcon';
@@ -30,8 +30,8 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    setNavAnim(TweenLite.to(navRef, 0.2, { width: 160 }, { delay: 0.4 }).reverse());
-    setToggleAnim(TweenLite.to(toggleRef, 0.2, { rotate: 180 }).reverse());
+    setNavAnim(gsap.to(navRef, 0.2, { width: 160 }, { delay: 0.4 }).reverse());
+    setToggleAnim(gsap.to(toggleRef, 0.2, { rotate: 180 }).reverse());
   }, []);
 
   return (
