@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import request from '../utils/Request';
-import AxiosHeader from '../utils/AxiosHeader';
-import Reputation from '../components/Reputation';
+import request from '../../utils/Request';
+import AxiosHeader from '../../utils/AxiosHeader';
+import Reputation from '../../components/Reputation/Reputation';
 
 const ReputationContainer = () => {
   const [reputation, setReputation] = useState([]);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../containers/Home/HomeContainer';
 import Raid from '../containers/RaidProgressContainer';
-import Reputations from '../containers/ReputationContainer';
+import Reputations from '../containers/Reputation/ReputationContainer';
 import Achievements from '../containers/AchievementsContainer';
 import Stuff from '../containers/StuffContainer';
 import Collection from '../containers/Collection/CollectionContainer';

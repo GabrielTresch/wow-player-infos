@@ -20,7 +20,6 @@ const Search = () => {
       const header = AxiosHeader(result.data.access_token);
       const getProfil = await request(`https://${event.target.region.value}.api.blizzard.com/profile/wow/character/${event.target.realmSlug.value}/${event.target.pseudo.value}?namespace=profile-${event.target.region.value}&locale=fr_EU`, header);
       const media = await request(getProfil.data.media.href, header);
-      console.log(getProfil.data);
       dispatch(setProfil(
         event.target.pseudo.value,
         event.target.realmSlug.value,
