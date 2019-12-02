@@ -1,19 +1,35 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './HomeSpe.scss';
 
-const HomeSpe = ({ spe }) => (
-  <div className="spe-container spec-item item shadow">
-    <div className="spec-navigation">
-      {spe.map((value) => (
-        <img key={value.specialization} src={value.media} className={value.active === 'active' ? 'spec-img-active' : 'spec-img'} alt={value.specialization} />
-      ))}
-    </div>
-    <table>
-      <tbody>
+const HomeSpe = ({ spe }) => {
+  const [speActive, setSpeActive] = useState();
+
+  useEffect(() => {
+    if (!speActive) {
+      spe.map((el) => (
+        el.active === 'active'
+          && (
+            setSpeActive(el.specialization)
+          )
+      ));
+    }
+  });
+
+  return (
+    <div className="spe-container spec-item item shadow">
+      <div className="spec-navigation">
         {spe.map((value) => (
-          value.active === 'active'
+          <button type="button" onClick={() => setSpeActive(value.specialization)} key={value.specialization}>
+            <img src={value.media} className={value.specialization === speActive ? 'spec-img-active' : 'spec-img'} alt={value.specialization} />
+          </button>
+        ))}
+      </div>
+      <table>
+        <tbody>
+          {spe.map((value) => (
+            value.specialization === speActive
           && (
             value.talents.map((val) => (
               <tr key={val.level}>
@@ -35,49 +51,12 @@ const HomeSpe = ({ spe }) => (
               </tr>
             ))
           )
-        ))}
-      </tbody>
-    </table>
-    {/* {spe.map((value) => (
-      <div key={value.specialization}>
-        <h4>
-          <img src={value.media} alt={value.specialization} />
-          <p>{`${value.active === 'active' ? '( Active )' : ''} ${value.specialization} - ${value.role}`}</p>
-        </h4>
-        <ul>
-          {value.talents.map((val) => (
-            <div key={val.level}>
-              <li>{val.level}</li>
-              <ol>
-                {val.talent.map((tal) => (
-                  <li key={tal.talent}>
-                    <h4>{`${tal.active === 'active' ? '( Active )' : ''} ${tal.talent}`}</h4>
-                    <p>{`- Description: ${tal.description}`}</p>
-                    <p>{`- CastTime: ${tal.castTime}`}</p>
-                    <p>{`- Cooldown: ${tal.cooldown}`}</p>
-                    <p>{`- Cost: ${tal.cost}`}</p>
-                    <p>{`- Range: ${tal.range}`}</p>
-                  </li>
-                ))}
-              </ol>
-            </div>
           ))}
-        </ul>
-        {value.pvpTalents.length > 0
-          && (
-            <>
-              <h4>PvpTalents</h4>
-              <ul>
-                {value.pvpTalents.map((pvpTal) => (
-                  <li key={pvpTal.talent}>{pvpTal.talent}</li>
-                ))}
-              </ul>
-            </>
-          )}
-      </div>
-    ))} */}
-  </div>
-);
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 HomeSpe.propTypes = {
   spe: PropTypes.array.isRequired,

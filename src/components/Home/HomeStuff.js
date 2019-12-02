@@ -5,7 +5,6 @@ import AzeriteBorder from '../../img/azerith-border.png';
 
 const HomeStuff = ({ stuff }) => (
   <div className="stuff-container stuff-item item shadow">
-    {console.log(stuff)}
     <ul>
       {stuff.map((value) => (
         <li key={value.name}>
