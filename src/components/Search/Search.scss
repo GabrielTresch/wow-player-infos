@@ -16,22 +16,21 @@ form{
     background: transparent;
     padding-left: 15px;
     outline: none;
+    background: var(--medium-grey);
     &::placeholder {
       color: var(--medium-white);
     }
-  }
-  
-  .input-select{
-    background: var(--medium-grey);
     &:nth-child(3){
       width:30px;
     }
   }
   input[type=submit]{
-    width:50px;
+    padding:0;
+    width:30px;
     background: url('../../img/search.svg');
     background-repeat: no-repeat;
     background-position: center;
     border:none;
+    cursor: pointer;
   }
 }

@@ -33,9 +33,9 @@ const Search = () => {
   };
   return (
     <form onSubmit={handleClick}>
-      <input name="pseudo" placeholder="yashuki" />
-      <input name="realmSlug" placeholder="kaelthas" className="input-select" />
-      <input name="region" placeholder="eu" className="input-select" />
+      <input name="pseudo" value="yashuki" />
+      <input name="realmSlug" value="kaelthas" className="input-select" />
+      <input name="region" value="eu" className="input-select" />
       <input type="submit" value="" />
     </form>
   );
