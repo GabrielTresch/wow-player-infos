@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Reputation.scss';
 
 const Reputation = ({ reputation, subReputation }) => (
   <>
     {reputation.map((value) => (
-      <div key={value.name}>
+      <div key={value.name} className="reputation-container">
         <h2>{value.name}</h2>
         {value.reputation.map((val) => (
-          <div key={val.name}>
-            <p>{`${val.name} ${val.value}/${val.max} ${val.etat}`}</p>
+          <div key={val.name} className="reputation-content">
+            <h4 className="reputation-category">{val.name}</h4>
+            <div className={val.etat === 'Exalté' ? 'reputation-jauge reputation-exalte' : 'reputation-jauge'}>
+              <div className="jauge-content" style={{ width: `${(val.value / val.max) * 100}%` }} />
+              <span>{`${val.value}/${val.max}`}</span>
+            </div>
+            <span className="reputation-etat">{val.etat}</span>
           </div>
         ))}
         {subReputation.map((e) => (
@@ -16,10 +22,15 @@ const Reputation = ({ reputation, subReputation }) => (
             {e.parentCategory === value.name
               && (
                 <>
-                  <h3>{e.name}</h3>
+                  <h3 className="reputation-subcategory">{e.name}</h3>
                   {e.subReput.map((el) => (
-                    <div key={el.name}>
-                      <p>{`${el.name} ${el.value}/${el.max} ${el.etat}`}</p>
+                    <div key={el.name} className="reputation-content">
+                      <h4 className="reputation-category">{el.name}</h4>
+                      <div className="reputation-jauge">
+                        <div className="jauge-content" style={{ width: `${(el.value / el.max) * 100}%` }} />
+                        <span>{`${el.value}/${el.max}`}</span>
+                      </div>
+                      <span className="reputation-etat">{el.etat}</span>
                     </div>
                   ))}
                 </>

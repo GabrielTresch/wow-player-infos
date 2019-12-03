@@ -1,0 +1,44 @@
+.reputation-container{
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--yellow);
+  .reputation-content{
+    display: flex;
+    align-items: center;
+    margin: 2px auto;
+    .reputation-category{
+      width:25%;
+      text-align: right;
+      margin: 0 auto;
+    }
+    .reputation-jauge{
+      background:var(--dark-grey);
+      width: 50%;
+      height: 22px;
+      margin: 5px 10px;
+      position: relative;
+      .jauge-content{
+        position: absolute;
+        top:0;
+        left:0;
+        background:#05c56b;
+        height: 100%;
+      }
+      span{
+        display: block;
+        width: 100px;
+        text-align: center;
+        margin: auto;
+      }
+    }
+    .reputation-exalte{
+      background:#05c56b;
+    }
+    .reputation-etat{
+      width:25%;
+    }
+  }
+  .reputation-subcategory{
+    width: 25%;
+    text-align: right;
+  }
+}
