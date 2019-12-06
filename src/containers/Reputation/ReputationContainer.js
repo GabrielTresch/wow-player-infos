@@ -105,7 +105,6 @@ const ReputationContainer = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <>
-      <h1>Reputations</h1>
       {reputation !== undefined
         ? (
           <Reputation

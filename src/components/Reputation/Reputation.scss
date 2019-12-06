@@ -1,6 +1,9 @@
 .reputation-container{
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--yellow);
+  border-bottom: 1px solid var(--light-grey);
+  h2{
+    text-align: center;
+  }
   .reputation-content{
     display: flex;
     align-items: center;
@@ -16,12 +19,14 @@
       height: 22px;
       margin: 5px 10px;
       position: relative;
+      z-index: -1;
       .jauge-content{
         position: absolute;
         top:0;
         left:0;
-        background:#05c56b;
+        background:var(--yellow);
         height: 100%;
+        z-index: -1;
       }
       span{
         display: block;
@@ -31,7 +36,7 @@
       }
     }
     .reputation-exalte{
-      background:#05c56b;
+      background:var(--exalte);
     }
     .reputation-etat{
       width:25%;
@@ -40,5 +45,29 @@
   .reputation-subcategory{
     width: 25%;
     text-align: right;
+  }
+}
+
+@media screen and(max-width: 1000px){
+  .reputation-container{
+    .reputation-content{
+      flex-wrap: wrap;
+      .reputation-category{
+        order:1;
+        width: calc(50% - 10px);
+        text-align: left;
+        margin-left: 10px;
+      }
+      .reputation-etat{
+        order:2;
+        width: calc(50% - 10px);
+        text-align: right;
+        margin-right: 10px;
+      }
+      .reputation-jauge{
+        order:3;
+        width: 100%;
+      }
+    }
   }
 }

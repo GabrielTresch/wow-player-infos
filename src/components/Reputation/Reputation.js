@@ -11,8 +11,10 @@ const Reputation = ({ reputation, subReputation }) => (
           <div key={val.name} className="reputation-content">
             <h4 className="reputation-category">{val.name}</h4>
             <div className={val.etat === 'Exalté' ? 'reputation-jauge reputation-exalte' : 'reputation-jauge'}>
+              {val.etat !== 'Exalté' ? (
+                <span>{`${val.value}/${val.max}`}</span>
+              ) : false}
               <div className="jauge-content" style={{ width: `${(val.value / val.max) * 100}%` }} />
-              <span>{`${val.value}/${val.max}`}</span>
             </div>
             <span className="reputation-etat">{val.etat}</span>
           </div>
@@ -27,8 +29,8 @@ const Reputation = ({ reputation, subReputation }) => (
                     <div key={el.name} className="reputation-content">
                       <h4 className="reputation-category">{el.name}</h4>
                       <div className="reputation-jauge">
+                        {el.etat !== 'Exalté' ? <span>{`${el.value}/${el.max}`}</span> : false}
                         <div className="jauge-content" style={{ width: `${(el.value / el.max) * 100}%` }} />
-                        <span>{`${el.value}/${el.max}`}</span>
                       </div>
                       <span className="reputation-etat">{el.etat}</span>
                     </div>
