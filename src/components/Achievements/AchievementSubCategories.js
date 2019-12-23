@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActifAchiev } from '../redux/actions';
+import { setActifAchiev } from '../../redux/actions';
 import Achievements from './Achievements';
 
 const AchievementSubCategories = ({ categories }) => {

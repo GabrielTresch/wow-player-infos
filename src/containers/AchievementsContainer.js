@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActifAchiev } from '../redux/actions';
 import AchievementsCategories from '../api/AchievementsCategories';
-import AchievementSubCategories from '../components/AchievementSubCategories';
+import AchievementSubCategories from '../components/Achievements/AchievementSubCategories';
 
 // eslint-disable-next-line max-len
 const fetchData = async (pseudo, realmSlug, region, token, actif) => AchievementsCategories(pseudo, realmSlug, region, token, actif);
@@ -36,7 +36,6 @@ const AchievementsContainer = () => {
   }, [pseudo, realmSlug, region, actif, token, dispatch]);
   return (
     <>
-      <h1>Hauts Faits</h1>
       {categories !== undefined
         ? (
           <>

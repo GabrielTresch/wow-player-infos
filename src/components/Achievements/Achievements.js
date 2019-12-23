@@ -4,7 +4,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import Achievement from '../api/Achievements';
+import Achievement from '../../api/Achievements';
+import './Achievements.scss';
+import Blason from '../../img/navigation/StuffIcon';
 
 const Achievements = ({
   allAchievement,
@@ -24,25 +26,31 @@ const Achievements = ({
     // eslint-disable-next-line no-return-assign
     return () => isSubscribed = false;
   }, [accountAchievements, subCategory, subCategoryActif, allAchievement, token]);
-  console.log(infos);
   return (
-    <>
+    <div className="achievement-container">
       {infos
         ? (
           infos.map((value) => (
-            <div key={value.id}>
-              <h3>
-                <img src={value.icon} alt={value.name} />
-                {value.name}
-              </h3>
-              <p>{value.description}</p>
-              <p>{`Point: ${value.points}`}</p>
-              <p>{`Date: ${value.date}`}</p>
+            <div key={value.id} className="achievement-vignette">
+              <img src={value.icon} alt={value.name} className="achievement-icon" />
+              <div className="achievement-description">
+                <h3>
+                  {value.name}
+                </h3>
+                <p>{value.description}</p>
+              </div>
+              <div className="achievement-infos">
+                <span>
+                  <Blason />
+                  {value.points}
+                </span>
+                <p>{`Date: ${value.date}`}</p>
+              </div>
             </div>
           ))
         )
         : <p>Loading...</p>}
-    </>
+    </div>
   );
 };
 
