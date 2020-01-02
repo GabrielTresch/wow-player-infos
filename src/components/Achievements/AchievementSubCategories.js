@@ -7,9 +7,11 @@ import Achievements from './Achievements';
 const AchievementSubCategories = ({ categories }) => {
   const dispatch = useDispatch();
   const subActif = useSelector((state) => state.subActif);
+
   const handleClick = (event) => {
     dispatch(setActifAchiev(event.target.value));
   };
+
   return (
     <div>
       {categories.map((value) => (
@@ -19,9 +21,11 @@ const AchievementSubCategories = ({ categories }) => {
                 value.subCategories.length !== 0
                   ? (
                     <>
-                      {value.subCategories.map((val) => (
-                        <button value={val.id} onClick={handleClick} key={val.id} type="button">{`${val.name} - ${val.id}`}</button>
-                      ))}
+                      <select onChange={handleClick}>
+                        {value.subCategories.map((val) => (
+                          <option value={val.id} key={val.id}>{`${val.name} - ${val.id}`}</option>
+                        ))}
+                      </select>
                       {value.subCategories.map((el) => (
                         el.isActive === true
                         && (
@@ -54,17 +58,6 @@ const AchievementSubCategories = ({ categories }) => {
     </div>
   );
 };
-
-// {val.isActive === true
-//   && (
-//   <>
-//     <Achievements
-//       accountAchievements={value.accountAchievements}
-//       subCategory={value.subCategories}
-//       subCategoryActif={subActif}
-//     />
-//   </>
-//   )}
 
 AchievementSubCategories.propTypes = {
   categories: PropTypes.array.isRequired,

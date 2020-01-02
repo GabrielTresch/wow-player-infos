@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../containers/Home/HomeContainer';
 import Raid from '../containers/RaidProgressContainer';
 import Reputations from '../containers/Reputation/ReputationContainer';
-import Achievements from '../containers/AchievementsContainer';
+import Achievements from '../containers/Achievement/AchievementsContainer';
 import Stuff from '../containers/StuffContainer';
 import Collection from '../containers/Collection/CollectionContainer';
 

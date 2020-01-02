@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActifAchiev } from '../redux/actions';
-import AchievementsCategories from '../api/AchievementsCategories';
-import AchievementSubCategories from '../components/Achievements/AchievementSubCategories';
+import { setActifAchiev } from '../../redux/actions';
+import AchievementsCategories from '../../api/AchievementsCategories';
+import AchievementSubCategories from '../../components/Achievements/AchievementSubCategories';
+import './AchievementsContainer.scss';
 
 // eslint-disable-next-line max-len
 const fetchData = async (pseudo, realmSlug, region, token, actif) => AchievementsCategories(pseudo, realmSlug, region, token, actif);
@@ -39,11 +40,11 @@ const AchievementsContainer = () => {
       {categories !== undefined
         ? (
           <>
-            <div>
+            <select onChange={(event) => setActif(event.target.value)}>
               {categories.map((value) => (
-                <button value={value.order} onClick={(e) => setActif(e.target.value)} type="button" key={value.order}>{value.rootCategory}</button>
+                <option value={value.order} key={value.order}>{value.rootCategory}</option>
               ))}
-            </div>
+            </select>
             <br />
             <AchievementSubCategories categories={categories} />
           </>
