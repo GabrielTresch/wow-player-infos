@@ -98,7 +98,9 @@ const Home = () => {
         )
         : <div className="item stuff-item shadow">Equipement</div>}
 
-      <div className="item raid-item shadow">Raid Progression</div>
+      <div className="item raid-item shadow">
+        <span>En cours de réalisation</span>
+      </div>
     </div>
   );
 };

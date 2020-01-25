@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import UserIcon from '../../img/navigation/UserIcon';
-import RaidIcon from '../../img/navigation/RaidIcon';
+// import RaidIcon from '../../img/navigation/RaidIcon';
 import CollectionIcon from '../../img/navigation/CollectionIcon';
 import ReputationIcon from '../../img/navigation/ReputationIcon';
 import AchievementIcon from '../../img/navigation/AchievementIcon';
@@ -44,10 +44,10 @@ const Navigation = () => {
           <UserIcon />
           <span>Profil</span>
         </NavLink>
-        <NavLink to="/raid-progression" activeClassName="active-link">
+        {/* <NavLink to="/raid-progression" activeClassName="active-link">
           <RaidIcon />
           <span>Raid progression</span>
-        </NavLink>
+        </NavLink> */}
         <NavLink to="/collection/montures" activeClassName="active-link">
           <CollectionIcon />
           <span>Collection</span>
