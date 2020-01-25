@@ -4,7 +4,6 @@ import Home from '../containers/Home/HomeContainer';
 import Raid from '../containers/RaidProgressContainer';
 import Reputations from '../containers/Reputation/ReputationContainer';
 import Achievements from '../containers/Achievement/AchievementsContainer';
-import Stuff from '../containers/StuffContainer';
 import Collection from '../containers/Collection/CollectionContainer';
 
 const Routes = (
@@ -14,7 +13,6 @@ const Routes = (
     <Route exact path="/collection/montures" component={Collection} />
     <Route exact path="/reputations" component={Reputations} />
     <Route exact path="/achevements" component={Achievements} />
-    <Route exact path="/equipements" component={Stuff} />
     <Redirect to="/" />
   </Switch>
 );

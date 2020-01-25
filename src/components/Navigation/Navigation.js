@@ -8,7 +8,6 @@ import RaidIcon from '../../img/navigation/RaidIcon';
 import CollectionIcon from '../../img/navigation/CollectionIcon';
 import ReputationIcon from '../../img/navigation/ReputationIcon';
 import AchievementIcon from '../../img/navigation/AchievementIcon';
-import StuffIcon from '../../img/navigation/StuffIcon';
 import DiscordIcon from '../../img/navigation/DiscordIcon';
 import WowLogo from '../../img/world-of-warcraft.svg';
 import ToggleNav from '../../img/navigation/close.svg';
@@ -60,10 +59,6 @@ const Navigation = () => {
         <NavLink to="/achevements" activeClassName="active-link">
           <AchievementIcon />
           <span>Hauts Faits</span>
-        </NavLink>
-        <NavLink to="/equipements" activeClassName="active-link">
-          <StuffIcon />
-          <span>Équipements</span>
         </NavLink>
         <a href="https://discordapp.com/api/oauth2/authorize?client_id=640593176473763841&permissions=317504&scope=bot" target="blank" aria-label="Discord Bot" className="discord-link">
           <DiscordIcon />
