@@ -22,7 +22,9 @@ const Achievements = async (subCategory, subCategoryActif, accountAchievements, 
         if (checkName.includes(el.name.fr_FR) === false) {
           accountAchievements.forEach((e) => {
             if (e.id == achievementInfos.data.id) {
-              dateAchiev = e.date;
+              dateAchiev = e.date.toString().substring(0, 10);
+              // eslint-disable-next-line radix
+              dateAchiev = new Date(parseInt(dateAchiev) * 1000).toLocaleDateString('fr-EU');
             }
           });
           achievArray.push({

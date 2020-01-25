@@ -40,12 +40,11 @@ const AchievementsContainer = () => {
       {categories !== undefined
         ? (
           <>
-            <select onChange={(event) => setActif(event.target.value)}>
+            <select onChange={(event) => setActif(event.target.value)} className="select-achiev">
               {categories.map((value) => (
                 <option value={value.order} key={value.order}>{value.rootCategory}</option>
               ))}
             </select>
-            <br />
             <AchievementSubCategories categories={categories} />
           </>
         )

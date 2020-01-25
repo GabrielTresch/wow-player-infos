@@ -44,7 +44,7 @@ const Achievements = ({
                   <Blason />
                   {value.points}
                 </span>
-                <p>{`Date: ${value.date}`}</p>
+                {value.date && <p>{value.date}</p>}
               </div>
             </div>
           ))
