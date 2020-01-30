@@ -23,7 +23,7 @@ const AchievementSubCategories = ({ categories }) => {
                 <>
                   <select onChange={handleClick} className="select-achiev">
                     {value.subCategories.map((val) => (
-                      <option value={val.id} key={val.id}>{`${val.name} - ${val.id}`}</option>
+                      <option value={val.id} key={val.id}>{val.name}</option>
                     ))}
                   </select>
                   {value.subCategories.map((el) => (
