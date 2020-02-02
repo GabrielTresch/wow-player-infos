@@ -38,17 +38,17 @@ const ReputationContainer = () => {
 
       allReput.data.factions.map(async (el) => {
         const factions = await request(el.key.href, header);
-        if (factions.data.factions !== undefined) {
+        if (factions.data.factions) {
           category.push(factions.data.name.fr_FR);
         }
       });
       await Promise.all(allReput.data.root_factions.map(async (val) => {
         const rootFactions = await request(val.key.href, header);
-        if (rootFactions.data.factions !== undefined) {
+        if (rootFactions.data.factions) {
           rootFactions.data.factions.map(async (element) => {
-            if (category.includes(element.name.fr_FR) === true) {
+            if (category.includes(element.name.fr_FR)) {
               const subCategory = await request(element.key.href, header);
-              if (subCategory.data.factions !== undefined) {
+              if (subCategory.data.factions) {
                 subCategory.data.factions.forEach((e) => {
                   accountReput.forEach((mainElement) => {
                     if (mainElement.name === e.name.fr_FR) {
@@ -105,7 +105,7 @@ const ReputationContainer = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <>
-      {reputation !== undefined
+      {reputation
         ? (
           <Reputation
             reputation={reputation}

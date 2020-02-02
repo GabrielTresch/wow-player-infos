@@ -16,7 +16,7 @@ const AchievementSubCategories = ({ categories }) => {
     <>
       {categories.map((value) => (
         <Fragment key={value.order}>
-          {value.isActive === true
+          {value.isActive
           && (
             value.subCategories.length !== 0
               ? (
@@ -27,7 +27,7 @@ const AchievementSubCategories = ({ categories }) => {
                     ))}
                   </select>
                   {value.subCategories.map((el) => (
-                    el.isActive === true
+                    el.isActive
                     && (
                       <div key={subActif}>
                         <Achievements

@@ -9,7 +9,7 @@ const HomeStuff = ({ stuff }) => (
       {stuff.map((value) => (
         <li key={value.name}>
           <div>
-            {value.azerite !== false
+            {value.azerite
              && (<img className="stuff-azerite" src={AzeriteBorder} alt="bordure azerite" />)}
             <img className="stuff-icon" src={value.icon} alt={value.name} />
           </div>

@@ -73,7 +73,7 @@ const Home = () => {
   }, [pseudo, realmSlug, region, token]);
   return (
     <div className="home-container">
-      {activSpe.name !== undefined
+      {activSpe.name
         ? (
           <HomeProfile
             profile={profil}

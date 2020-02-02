@@ -41,8 +41,8 @@ const HomeSpe = ({ spe }) => {
                       <div>
                         <p>{element.talent}</p>
                         <div className="spell-infos">
-                          <span>{element.cooldown !== undefined ? element.cooldown : ' '}</span>
-                          <span>{element.castTime !== undefined ? element.castTime : ' '}</span>
+                          <span>{element.cooldown && element.cooldown}</span>
+                          <span>{element.castTime && element.castTime}</span>
                         </div>
                       </div>
                     </div>

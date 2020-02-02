@@ -20,78 +20,66 @@ const HomeProfile = ({
   profile, media, race, realm, activSpe, activTitle,
 }) => (
   <>
-    {profile.level !== undefined
-      && profile.average_item_level !== undefined
-      && profile.name !== undefined
-      && race.name !== undefined
-      && realm.name !== undefined
-      && media.bust_url !== undefined
-      && media.render_url !== undefined
-      && race.faction.name !== undefined
-      && activTitle.name.fr_FR !== undefined
-      ? (
-        <div className="profile-container profile-item shadow">
-          <div className="profile-background" style={{ backgroundImage: `url(${media.render_url})` }} />
-          <div className="profile-content">
-            <div className="profile-avatar" style={{ backgroundImage: `url(${media.bust_url})` }} />
-            <div className="profile-description">
-              <div className="profile-name">
-                {activTitle.name.fr_FR}
-                <span style={{ color: `var(--${activSpe.playable_class.name.en_US.split(' ').join('')})` }}>
-                  {` ${profile.name}`}
-                </span>
-              </div>
-              <div className="profile-level">{`Niveau ${profile.level}`}</div>
-              <div className="profile-icon">
-                {{
-                  Druid: (
-                    <img src={Druid} alt="classe icon" />
-                  ),
-                  Rogue: (
-                    <img src={Rogue} alt="classe icon" />
-                  ),
-                  DeathKnight: (
-                    <img src={DeathKnight} alt="classe icon" />
-                  ),
-                  DemonHunter: (
-                    <img src={DemonHunter} alt="classe icon" />
-                  ),
-                  Hunter: (
-                    <img src={Hunter} alt="classe icon" />
-                  ),
-                  Mage: (
-                    <img src={Mage} alt="classe icon" />
-                  ),
-                  Monk: (
-                    <img src={Monk} alt="classe icon" />
-                  ),
-                  Shaman: (
-                    <img src={Shaman} alt="classe icon" />
-                  ),
-                  Warrior: (
-                    <img src={Warrior} alt="classe icon" />
-                  ),
-                  Warlock: (
-                    <img src={Warlock} alt="classe icon" />
-                  ),
-                  Paladin: (
-                    <img src={Paladin} alt="classe icon" />
-                  ),
-                  default: (
-                    <img src={Priest} alt="classe icon" />
-                  ),
-                }[activSpe.playable_class.name.en_US.split(' ').join('')]}
-                <span>{`${activSpe.playable_class.name.fr_FR} ${activSpe.name.fr_FR}`}</span>
-              </div>
-              <div className="profile-icon">
-                {race.faction.name.fr_FR === 'Horde' ? <img className="faction-icon" src={iconHorde} alt="hord icon" /> : <img className="faction-icon" src={iconAlliance} alt="alliance icon" />}
-                <span>{realm.name.fr_FR}</span>
-              </div>
-            </div>
+    <div className="profile-container profile-item shadow">
+      <div className="profile-background" style={{ backgroundImage: `url(${media.render_url})` }} />
+      <div className="profile-content">
+        <div className="profile-avatar" style={{ backgroundImage: `url(${media.bust_url})` }} />
+        <div className="profile-description">
+          <div className="profile-name">
+            {activTitle.name.fr_FR}
+            <span style={{ color: `var(--${activSpe.playable_class.name.en_US.split(' ').join('')})` }}>
+              {` ${profile.name}`}
+            </span>
+          </div>
+          <div className="profile-level">{`Niveau ${profile.level}`}</div>
+          <div className="profile-icon">
+            {{
+              Druid: (
+                <img src={Druid} alt="classe icon" />
+              ),
+              Rogue: (
+                <img src={Rogue} alt="classe icon" />
+              ),
+              DeathKnight: (
+                <img src={DeathKnight} alt="classe icon" />
+              ),
+              DemonHunter: (
+                <img src={DemonHunter} alt="classe icon" />
+              ),
+              Hunter: (
+                <img src={Hunter} alt="classe icon" />
+              ),
+              Mage: (
+                <img src={Mage} alt="classe icon" />
+              ),
+              Monk: (
+                <img src={Monk} alt="classe icon" />
+              ),
+              Shaman: (
+                <img src={Shaman} alt="classe icon" />
+              ),
+              Warrior: (
+                <img src={Warrior} alt="classe icon" />
+              ),
+              Warlock: (
+                <img src={Warlock} alt="classe icon" />
+              ),
+              Paladin: (
+                <img src={Paladin} alt="classe icon" />
+              ),
+              default: (
+                <img src={Priest} alt="classe icon" />
+              ),
+            }[activSpe.playable_class.name.en_US.split(' ').join('')]}
+            <span>{`${activSpe.playable_class.name.fr_FR} ${activSpe.name.fr_FR}`}</span>
+          </div>
+          <div className="profile-icon">
+            {race.faction.name.fr_FR === 'Horde' ? <img className="faction-icon" src={iconHorde} alt="hord icon" /> : <img className="faction-icon" src={iconAlliance} alt="alliance icon" />}
+            <span>{realm.name.fr_FR}</span>
           </div>
         </div>
-      )
-      : <p>Loading...</p>}
+      </div>
+    </div>
   </>
 );
 

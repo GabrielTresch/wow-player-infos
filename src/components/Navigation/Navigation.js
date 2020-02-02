@@ -68,13 +68,13 @@ const Navigation = () => {
       <button type="button" className="toggle-menu" onClick={toggle} ref={(element) => { toggleRef = element; }}><img src={ToggleNav} alt="toggle navigation" /></button>
 
       <div className="avatar-container">
-        {avatar ? <img src={avatar} alt="avatar" className="avatar" /> : false}
-        {name ? (
-          <div>
-            <span className="avatar-name">{name}</span>
-            <span className="avatar-level">{`Niveau ${level}`}</span>
-          </div>
-        ) : false}
+        {avatar && <img src={avatar} alt="avatar" className="avatar" />}
+        {name && (
+        <div>
+          <span className="avatar-name">{name}</span>
+          <span className="avatar-level">{`Niveau ${level}`}</span>
+        </div>
+        )}
       </div>
     </nav>
   );

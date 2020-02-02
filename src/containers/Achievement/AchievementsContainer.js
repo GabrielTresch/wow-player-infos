@@ -21,9 +21,9 @@ const AchievementsContainer = () => {
     if (pseudo && realmSlug && region && token) {
       fetchData(pseudo, realmSlug, region, token, actif).then((data) => {
         setCategories(data);
-        if (data !== undefined) {
+        if (data) {
           data.forEach((value) => {
-            if (value.isActive === true) {
+            if (value.isActive) {
               if (value.subCategories.length !== 0) {
                 dispatch(setActifAchiev(value.subCategories[0].id.toString()));
               } else {
